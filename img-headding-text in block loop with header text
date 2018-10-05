@@ -1,0 +1,277 @@
+#https://drive.google.com/file/d/1ptEQIuEct7PmuCYuMivNmcBkNXbok3YA/view?usp=drivesdk
+
+
+
+<div class="container">
+  <div class="row">
+    
+  {% if section.settings.title != blank %}
+    <div class="section-header col-sm-12 text-center">
+       {% if section.settings.sub-main-title != blank %}
+    <span class="sub-heading-above">{{section.settings.sub-main-title}}</span>
+    {% endif %}
+      <h3 class="block-tittle">{{ section.settings.title | escape }}</h3>
+       {% if section.settings.sub-title != blank %}
+ 
+      <p>{{ section.settings.sub-title | escape }}</p>
+  
+  {% endif %}
+      
+    </div>
+  {% endif %}
+  </div>
+  
+  
+ 
+
+  <div class="row">
+   
+     
+    {% for block in section.blocks %}
+      {% if section.blocks.size == 5 and forloop.index < 2 %}
+        {%- assign column_width = 'medium-up--one-half' -%}
+        {%- assign max_height = 530 -%}
+      {% else %}
+        {%- assign column_width = grid_item_width -%}
+      {% endif %}
+      <div class="col-sm-6 text-{{ section.settings.align_text }}" {{ block.shopify_attributes }}>
+        <div class="blocks">
+       <div class="img" style="background-image:url({{ block.settings.image | img_url: '300x300' }});">
+        {% if block.settings.enable_image %}
+          
+           <img src="{{ block.settings.image | img_url: '300x300' }}" />
+        {% endif %}
+        </div>
+   
+      <div class="text">
+       {% if block.settings.title != blank %}
+          <h5>{{ block.settings.title | escape }}</h5>
+        {% endif %}  
+      {% if block.settings.text != blank %}
+          <div class="rte-setting">{{ block.settings.text }}</div>
+        {% endif %}
+          </div>
+          <div class="clr"></div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  
+  {% if section.blocks.size == 0 %}
+    {% include 'no-blocks' %}
+  {% endif %}
+</div>  
+   
+{% schema %}
+  {
+    "name": {
+      "en": "Text columns with images",
+      "de": "Textspalten mit Fotos",
+      "fr": "Colonnes avec images",
+      "it": "Colonne di testo con foto",
+      "ja": "画像付きテキスト列",
+      "es": "Col. de texto e imágenes",
+      "pt-BR": "Texto com imagens"
+    },
+    "class": "howwedoit how-we-do-it",
+    "settings": [
+  {
+		"type" : "text",
+		"id" : "sub-main-title",
+		"label" : "above Sub Heading Title"
+	  },
+      {
+        "type": "text",
+        "id": "title",
+        "label": {
+          "en": "Heading",
+          "de": "Titel",
+          "fr": "En-tête",
+          "it": "Heading",
+          "ja": "見出し",
+          "es": "Título",
+          "pt-BR": "Título"
+        },
+        "default": {
+          "en": "Text columns with images",
+          "de": "Textspalten mit Fotos",
+          "fr": "Colonnes de texte avec images",
+          "it": "Colonne di testo con foto",
+          "ja": "画像付きテキスト列",
+          "es": "Col. de texto con imagen",
+          "pt-BR": "Colunas de texto com imagens"
+        }
+      },
+		
+        {
+           "type": "textarea",
+           "id": "sub-title",
+           "default": "The adverts are the protein ate the core, the landing page and form are the supplements, the leads are gains - let's get working! ",
+           "label": "Sub-Title"
+        },
+
+      {
+        "type": "select",
+        "id": "align_text",
+        "label": {
+          "en": "Text alignment",
+          "de": "Textausrichtung",
+          "fr": "Alignement du texte",
+          "it": "Allineamento del testo",
+          "ja": "テキストアラインメント",
+          "es": "Alineación de texto",
+          "pt-BR": "Alinhamento de texto"
+        },
+        "default": "left",
+        "options": [
+          {
+            "value": "left",
+            "label": {
+              "en": "Left",
+              "de": "Links",
+              "fr": "Gauche",
+              "it": "Sinistra",
+              "ja": "左",
+              "es": "Izquierda",
+              "pt-BR": "Esquerda"
+            }
+          },
+          {
+            "value": "center",
+            "label": {
+              "en": "Centered",
+              "de": "Mittig",
+              "fr": "Centré",
+              "it": "Centrato",
+              "ja": "中央揃え",
+              "es": "Centrado",
+              "pt-BR": "Centralizado"
+            }
+          }
+        ]
+      }
+	  
+    ],
+    "blocks": [
+      {
+        "type": "text_block",
+        "name": {
+          "en": "Column",
+          "de": "Spalte",
+          "fr": "Colonne",
+          "it": "Colonna",
+          "ja": "列",
+          "es": "Columna",
+          "pt-BR": "Coluna"
+        },
+        "settings": [
+          {
+            "type": "checkbox",
+            "id": "enable_image",
+            "label": {
+              "en": "Show image",
+              "de": "Foto anzeigen",
+              "fr": "Afficher l'image",
+              "it": "Mostra immagine",
+              "ja": "画像を表示する",
+              "es": "Mostrar imagen",
+              "pt-BR": "Exibir imagem"
+            },
+            "default": true
+          },
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": {
+              "en": "Image",
+              "de": "Foto",
+              "fr": "Image",
+              "it": "Immagine",
+              "ja": "画像",
+              "es": "Imagen",
+              "pt-BR": "Imagem"
+            }
+          },
+          {
+            "type": "text",
+            "id": "title",
+            "label": {
+              "en": "Heading",
+              "de": "Titel",
+              "fr": "En-tête",
+              "it": "Heading",
+              "ja": "見出し",
+              "es": "Título",
+              "pt-BR": "Título"
+            },
+            "default": {
+              "en": "Add a title or tagline",
+              "de": "Titel oder Text hinzufügen",
+              "fr": "Ajouter un titre ou un slogan",
+              "it": "Aggiungi un titolo o una tagline",
+              "ja": "タイトルまたはタグラインを追加する",
+              "es": "Agregar un título o eslogan",
+              "pt-BR": "Adicione um título ou slogan"
+            }
+          },
+          {
+            "type": "richtext",
+            "id": "text",
+            "label": {
+              "en": "Text",
+              "de": "Text",
+              "fr": "Texte",
+              "it": "Testo",
+              "ja": "テキスト",
+              "es": "Texto",
+              "pt-BR": "Texto"
+            },
+            "default": {
+              "en": "<p>Share blog posts, products, or promotions with your customers. Use this text to describe products, share details on availability and style, or as a space to display recent reviews or FAQs.</p>",
+              "de": "<p>Blogposts, Produkte oder Promotions mit Ihren Kunden teilen. Nutzen Sie diesen Text, um Produkte zu beschreiben, Details zu Verfügbarkeit und Stil mitzuteilen oder als Ort, wo Reviews oder FAQs stehen.</p>",
+              "fr": "<p>Partagez des articles de blog, des produits ou des promotions avec vos clients. Utilisez ce texte pour décrire vos produits, partager des détails sur leur disponibilité ou leur style, ou encore pour afficher des FAQ et avis récents.</p>",
+              "it": "<p>Condividi articoli del blog, prodotti o promozioni con i tuoi clienti. Utilizza questo spazio per descrivere i prodotti, condividendo dettagli sulla loro disponibilità e sul loro stile, oppure per mostrare recensioni recenti o domande frequenti.</p>",
+              "ja": "<p>ブログ記事、商品、またはプロモーションをお客様に伝えます。このテキストで商品について説明し、公開状況やスタイルの詳細を共有するか、最近のレビューやFAQを表示するスペースとして使用します。</p>",
+              "es": "<p>Comparte entradas de blogs, productos o promociones con tus clientes. Usa este texto para describir productos, compartir detalles sobre la disponibilidad y el estilo, o como un espacio para mostrar reseñas recientes o preguntas frecuentes.</p>",
+              "pt-BR": "<p>Compartilhe posts de blogs, produtos ou promoções com seus clientes. Use este texto para descrever produtos, compartilhar detalhes sobre disponibilidade e estilo ou como um espaço para exibir comentários recentes ou perguntas frequentes.</p>"
+            }
+          }
+          
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": {
+          "en": "Text with images",
+          "de": "Textspalten mit Fotos",
+          "fr": "Colonnes de texte avec images",
+          "it": "Colonne di testo con foto",
+          "ja": "画像付きテキスト列",
+          "es": "Col. de texto con imagen",
+          "pt-BR": "Texto com imagens"
+        },
+        "category": {
+          "en": "Text",
+          "de": "Text",
+          "fr": "Texte",
+          "it": "Testo",
+          "ja": "テキスト",
+          "es": "Texto",
+          "pt-BR": "Texto"
+        },
+        "blocks": [
+          {
+            "type": "text_block"
+          },
+          {
+            "type": "text_block"
+          },
+          {
+            "type": "text_block"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}
