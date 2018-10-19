@@ -1,0 +1,308 @@
+# create pricing table and select plan and show contact form
+# like https://clickinfluence.myshopify.com/pages/pricing like this design
+# use rand slider and according price change rate and on click show form  
+https://drive.google.com/file/d/1yJIPkT72wHWCPqP6QnNeAL7qRncluqM2/view?usp=drivesdk
+
+/* Pricing-Table-image-text */
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+{%if section.settings.enableq%}
+<div class="row">
+  <div class="section-header col-sm-12 text-center">
+    <div class="max-700">
+      {% if section.settings.sub-main-title != blank %}
+      <span class="sub-heading-above">{{section.settings.sub-main-title}}</span>
+      {% endif %}
+      <h3 class="block-tittle">{{section.settings.title}}</h3>
+      <p>{{section.settings.text_under-title}}</p>
+    </div>
+  </div>
+</div>
+{%endif%}
+
+
+{%if section.settings.enable%}
+<div class="container center">
+  <form>
+    <div class="range">
+      <div class="range-in">          
+        <input type="range"  id="points" name="foo" value="500" step="100" min="500" max="10000" style="width:600px;">
+        <output for="range" class="output">£500</output>
+      </div>
+    </div>
+  </form>  
+  <script>
+
+  </script>
+
+
+  <div class="row pricing-tab">
+    {% for block in section.blocks %}
+    <div class="col-xs-12 col-sm-12 col-xl-3 selecttoshow color-{{forloop.index}}">    
+      <div class="block shjie" data-id="child-f-{{forloop.index}}">        
+        {%if block.settings.text-click != blank%}
+        <h5 class="h4f"> {{block.settings.text-click}} </h5> 
+        {%endif%}
+
+        <div class="outer-div-block"> 
+          {%if block.settings.text-click-1 != blank%} <div class="head-color"> {{block.settings.text-click-1}}</div>    {%endif%}
+          {%if block.settings.text-click-2 != blank%} <div>  {{block.settings.text-click-2}}</div>      {%endif%}
+        </div>
+        <div class="outer-div-block"> 
+          {%if block.settings.text-click-3 != blank%} <div class="head-color"> {{block.settings.text-click-3}}</div>    {%endif%}
+          {%if block.settings.text-click-4 != blank%} <div>  {{block.settings.text-click-4}}</div>      {%endif%}
+        </div>
+        <div class="outer-div-block"> 
+          {%if block.settings.text-click-5 != blank%} <div class="head-color"> {{block.settings.text-click-5}}</div>    {%endif%}
+          {%if block.settings.text-click-6 != blank%} <div>  {{block.settings.text-click-6}}</div>      {%endif%}
+        </div>
+        <div class="outer-div-block"> 
+          {%if block.settings.text-click-7 != blank%} <div class="head-color"> {{block.settings.text-click-7}}</div>    {%endif%}
+          {%if block.settings.text-click-8 != blank%} <div>  {{block.settings.text-click-8}}</div>      {%endif%}
+        </div>
+        {%if block.settings.text-click-9 != blank%}
+        <div class="single-text-box"> {{block.settings.text-click-9}}</div>        
+        {%endif%} 
+        {%if block.settings.text-click-10 != blank%}
+        <div class="single-text-box"> {{block.settings.text-click-10}}</div>        
+        {%endif%} 
+        {%if block.settings.text-click-11 != blank%}
+        <div class="single-text-box"> {{block.settings.text-click-11}}</div>        
+        {%endif%} 
+        {%if block.settings.text-click-12 != blank%}
+        <div class="single-text-box"> {{block.settings.text-click-12}}</div>        
+        {%endif%} 
+        {%if block.settings.text-click-13 != blank%}
+        <div class="single-text-box"> {{block.settings.text-click-13}}</div>        
+        {%endif%} 
+        {%if block.settings.text-click-14 != blank%}
+        <div class="single-text-box"> {{block.settings.text-click-14}}</div>        
+        {%endif%} 
+        {%if block.settings.text-click-15 != blank%}
+        <div class="single-text-box"> {{block.settings.text-click-15}}</div>        
+        {%endif%} 
+        {%if block.settings.text-click-16 != blank%}
+        <div class="single-text-box"> {{block.settings.text-click-16}}</div>        
+        {%endif%} 
+        <a class="btn show-when-highlit"> select</a>
+      </div>
+
+
+    </div>
+    {% endfor%}
+  </div>
+
+  <div class="clr"></div>
+
+  <div class="row znvdl">
+    <script src="//www.powr.io/powr.js?external-type=html"></script> 
+    <div class="col-sm-12">
+      <div id="child-f-1" class="form-1 comncls">
+        <div class="contact-form bg-form form-vertical">
+          <div class="powr-form-builder" id="fda900db_1539171077"></div>
+        </div>
+      </div>
+      <div id="child-f-2" class="form-2 comncls">
+        <div class="contact-form bg-form form-vertical">
+          <div class="powr-form-builder" id="b85ffa1a_1539171648"></div>
+        </div>
+      </div>
+      <div id="child-f-3" class="form-3 comncls">
+        <div class="contact-form bg-form form-vertical"> 
+          <div class="powr-form-builder" id="5d8b1cda_1539176098"></div>
+        </div>
+      </div>
+      <div id="child-f-4" class="form-4 comncls">
+        <div class="contact-form bg-form form-vertical">  
+          <div class="powr-form-builder" id="fa80b99d_1539176101"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div> 
+{%endif%}
+{% schema %}
+{
+"name": "boxes instructions",
+"class": "title-boxes instructions",
+"settings": [
+{
+"type": "checkbox",
+"id": "enableq",
+"label": "Show"
+},
+{
+"type" : "text",
+"id" : "sub-main-title",
+"label" : "above Sub Heading Title"
+},
+{
+"type": "text",
+"id": "title",
+"label": "Title"
+},
+{
+"type": "richtext",
+"id": "text_under-title",
+"label": "Text"
+},
+{
+"type": "checkbox",
+"id": "enable",
+"label": "Show slider"
+}
+],
+"blocks": [
+{
+"type": "block",
+"name": "Block",
+"settings": [
+{
+"type": "text",
+"id": "text-click",
+"label": "heading"
+},
+{
+"type": "text",
+"id": "text-click-1",
+"label": "campaigns text"
+},
+{
+"type": "text",
+"id": "text-click-2",
+"label": "text"
+},
+{
+"type": "text",
+"id": "text-click-3",
+"label": "ad sets text"
+},
+{
+"type": "text",
+"id": "text-click-4",
+"label": "text"
+},
+{
+"type": "text",
+"id": "text-click-5",
+"label": "adverts text"
+},
+{
+"type": "text",
+"id": "text-click-6",
+"label": "text"
+},
+{
+"type": "text",
+"id": "text-click-7",
+"label": "Channels text"
+},
+{
+"type": "text",
+"id": "text-click-8",
+"label": "text"
+},
+{
+"type": "text",
+"id": "text-click-9",
+"label": "text"
+},
+{
+"type": "text",
+"id": "text-click-10",
+"label": "text"
+},
+{
+"type": "text",
+"id": "text-click-11",
+"label": "text"
+},
+{
+"type": "text",
+"id": "text-click-12",
+"label": "text"
+},
+{
+"type": "text",
+"id": "text-click-13",
+"label": "text"
+},
+{
+"type": "text",
+"id": "text-click-14",
+"label": "text"
+},
+{
+"type": "text",
+"id": "text-click-15",
+"label": "text"
+},
+{
+"type": "text",
+"id": "text-click-16",
+"label": "text"
+}
+
+]
+}
+]
+}
+{% endschema %}
+<script type="text/javascript">
+  $(document).ready(function(){
+  $('.color-1').addClass( "highlight");
+  $('.form-1').hide();
+  $('.form-2').hide();
+  $('.form-3').hide();
+  $('.form-4').hide();
+  $('#points').on("input", function() {
+    $('.range-icon span').hide();
+    var thiss = $(this).val();
+    $('.output').val("£" + thiss);
+    if(thiss == 10000)
+    {
+      $('.output').val("£" + thiss + "+");
+    }
+    $('#child-f-1').hide();
+    $( '.shjie .btn' ).hide();
+    if((thiss > 499) && (thiss <= 999)){ 
+     
+      $('.color-1').addClass( "highlight" );
+    }
+    else{      
+      $('.color-1').removeClass( "highlight" );
+    }
+    if((thiss > 999) && (thiss <= 2499)){ 
+    
+      $('.color-2').addClass( "highlight" );
+    }
+    else{      
+      $('.color-2').removeClass( "highlight" );
+    }
+    if((thiss > 2499) && (thiss <= 9999)){ 
+     
+      $('.color-3').addClass( "highlight" );
+    }
+    else{      
+      $('.color-3').removeClass( "highlight" );
+    }
+    if((thiss > 9999) && (thiss <= 10000)){ 
+     
+      $('.color-4').addClass( "highlight" );
+    }
+    else{      
+      $('.color-4').removeClass( "highlight" );
+    }
+    $('.highlight').find('.shjie').find('.btn').show();
+    $('.comncls').hide();
+  }).trigger("change");
+
+  $('.show-when-highlit').click(function(){
+    $('.comncls').hide();
+    var ad =  $(this).parent().attr("data-id");
+    $('#'+ad).show();
+  });
+    
+    });
+</script> 
