@@ -1,0 +1,1 @@
+{% if template.name == blank %} main-content--no-template{% endif %}
