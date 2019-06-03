@@ -1,0 +1,19 @@
+#how to divide product price use carton value price/4= each product price
+
+
+{% assign div = price | money_without_currency %}
+  {% for tag in product.tags %}      
+ {% if tag contains 'carton:' %}
+          		
+ {% assign hn = tag | remove: "carton:" %}
+
+
+        	{% endif %}
+          {% endfor %}
+ 
+{% assign hn =  hn  | plus: 0 %}
+ {% assign each_price = div | divided_by: hn %}
+
+<span class="price-item price-item--sale each-{{ hn }}">  
+ (${{ each_price | round: 2 }} each)
+ </span>
