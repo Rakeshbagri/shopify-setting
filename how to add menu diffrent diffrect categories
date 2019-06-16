@@ -1,0 +1,80 @@
+<div class="sidebar">
+  
+  <div class="sidebar-links">
+    <span class="mnav">  <div> </div> collection </span>
+{% for block in section.blocks %}
+  {%- assign multi_collection =  block.settings.multi_collection -%}
+  {%- assign nested_link = block.settings.nested_link -%}
+	{% if collection.handle contains multi_collection %}
+		{% if linklists[nested_link].links.size > 0 %}
+          <ul class="site-footer__linklist">
+            {% for link in linklists[nested_link].links %}
+              <li class="site-footer__linklist-item">
+                
+                <a href="{{ link.url }}">
+                   
+                  {{ link.title }}
+                </a>
+              </li>
+            {% endfor %}
+          </ul>
+		{% endif %}
+	{% endif %}
+{% endfor %}
+  
+</div>
+</div>
+
+
+<script> 
+ $(document).ready(function(e) {
+    $(".mnav").click(function(){
+	 $(".sidebar").toggleClass("rakesh");	
+	});
+});
+</script> 
+
+
+{% schema %}
+  {
+    "name": "Multi level collection",
+    "class": "nested-collection",
+    "blocks": [
+      {
+        "type": "collection",
+        "name": "Nested Collections",
+        "settings": [
+          {
+            "type": "collection",
+            "id": "multi_collection",
+            "label": "Parent collection"
+          },
+          {
+            "type": "link_list",
+            "id": "nested_link",
+            "label": "Link",
+            "info": "Optional"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Multi Collection",
+        "category": "Collection",
+        "blocks": [
+          {
+            "type": "collection"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}
+
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
