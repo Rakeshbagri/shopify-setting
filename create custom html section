@@ -1,0 +1,60 @@
+<div class="container">
+  <div class="row">
+
+<div class="feature-row__text">
+ <div class="col-sm-12">
+      {% if section.settings.title != blank %}
+        <h2 class="h3">{{ section.settings.title | escape }}</h2>
+      {% endif %}
+      {% if section.settings.text != blank %}
+        <div class="rte featured-row__subtext">{{ section.settings.text  }}</div>
+      {% endif %}
+      {% if section.settings.button_label != blank %}
+        <a href="{{ section.settings.button_link }}" class="btn">
+          {{ section.settings.button_label }}
+        </a>
+      {% endif %}
+    </div>
+
+  </div></div>
+</div>
+
+{% schema %}
+  {
+    "name": "Custom html text",
+    "class": "custom-html",
+    "settings": [
+     
+      
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+        "default": "Main Tittle"
+      },
+      {
+        "type": "textarea",
+        "id": "text",
+        "label": "Text",
+        "default": "<p>Pair large text with an image to tell a story, explain a detail about your product, or describe a new promotion.</p>"
+      },
+      {
+        "type": "text",
+        "id": "button_label",
+        "label": "Button label",
+        "default": "Optional button"
+      },
+      {
+        "type": "url",
+        "id": "button_link",
+        "label": "Button link"
+      } 
+    ],
+    "presets": [
+      {
+        "name": "Custom html text",
+        "category": "Images"
+      }
+    ]
+  }
+{% endschema %}
