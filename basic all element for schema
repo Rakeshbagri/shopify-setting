@@ -5,4 +5,17 @@ for headding
       "content": "Navigation"
     },
     
+    ---------------------------------------------------
+Add checkbox true & false
+     {% if section.settings.cart-show == true %}
+content 
+    {% endif %}
+
+{
+      "type": "checkbox",
+      "id": "cart-show",
+      "label": "Show Cart icons", 
+      "default": false
+    } 
     
+    ---------------------------------------------------
