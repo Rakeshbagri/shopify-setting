@@ -1,1 +1,9 @@
 #full shopify section settings
+
+
+ {% if request.host == 'yogablitz.com' %}
+    sssssssssssss
+  
+     {%else %}
+  rrrrrrrrrrrrrrr
+    {% endif %}
