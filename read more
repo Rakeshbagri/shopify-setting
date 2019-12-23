@@ -1,6 +1,19 @@
 #full shopify section settings
 
 
+As discuss we need 3 functionality
+1. Pick up customer DOB as send offer email and birthday... for this we will use this app this app
+https://apps.shopify.com/happy-birthday-email
+
+2. add customer account page there will be show customer all informations like order, addressa and more informations of customer... for this  shopify provide defult we will add and design as theme 
+
+3 add reward funtionlity for this we will sue this app https://apps.shopify.com/loyaltylion
+
+we need 15 to 18 hours implement these funtionlity 2 - 3 days 
+
+
+
+
  {% if request.host == 'yogablitz.com' %}
     sssssssssssss
   
