@@ -1,0 +1,52 @@
+{% if section.settings.on_off %}
+  <div class="col-refer">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          {% if section.settings.text != blank %}
+          	<h6>{{ section.settings.text }} </h6>
+          {% endif %}
+          {% if section.settings.button_text != blank %}
+          	<a class="btn-20" href="{{ section.settings.button_link }}">{{ section.settings.button_text }}</a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endif %}
+
+
+{% schema %}
+  {
+    "name": "Refer section",
+	
+    "settings": [
+		{
+            "type": "checkbox",
+            "id": "on_off",
+            "label": "Hide / Show"
+          },
+        {
+          "type": "text",
+          "id" : "text",
+          "label" : "Text"
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button Label"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button link"
+        }
+]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
