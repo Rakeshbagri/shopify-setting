@@ -1,0 +1,192 @@
+<div class="home-main-slider">
+  {% for block in section.blocks %}
+  <div class="slide-ins">
+  	<div class="oyg_slider">
+    <div class="oyg_slider_left d-flex align-items-center justify-content-center">
+      <div class="contents">
+        <div class="for-h"> 
+          {% if block.settings.slide_title != blank %}
+              <h1> {{ block.settings.slide_title }} </h1>
+          {% endif %}
+          {% if block.settings.subheading != blank %}
+              <h2>{{ block.settings.subheading }}</h2>
+          {% endif %}
+        </div>
+        {% if block.settings.para != blank %}
+          <p>{{ block.settings.para }} </p>
+        {% endif %}
+        <div class="oyg_slide_btn">
+          <div class="oyg_btn">
+            <div class="block-1">
+              {% if block.settings.button_upper_1 != blank %}
+                  <span class="btn-heading"> {{ block.settings.button_upper_1 }} </span>
+              {% endif %}
+              {% if block.settings.button_label_1 != blank %}
+                  <a class="btn_orange btn__new" data-target="tab-input-1" href="{{ block.settings.button_link_1 }}?product-id={{ block.settings.product_id_1 }}&price-id={{ block.settings.price_id_1 }}&plan-name={{ block.settings.plan_name_url_1 }}">
+                    <b>{{ block.settings.button_label_1 }} </b>
+              <span> {{ block.settings.button_bottom_1 }} </span></a>
+              {% endif %}
+            </div>
+            <div class="block-2">
+              {% if block.settings.button_upper_2 != blank %}
+              <span class="btn-heading"> {{ block.settings.button_upper_2 }}  </span>
+              {% endif %}
+              {% if block.settings.button_label_2 != blank %}
+                <a href="{{block.settings.button_link_2}}?product-id={{ block.settings.product_id_2 }}&price-id={{ block.settings.price_id_2 }}&plan-name={{ block.settings.plan_name_url_2 }}" class="btn__new btn_white"> 
+                  <b>  {{ block.settings.button_label_2 }} </b>
+                  <span> {{ block.settings.button_bottom_2 }} </span>
+                </a>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% if block.settings.image != blank %}
+    <div class="oyg_slider_right">
+      <img class="for-desk" src="{{ block.settings.image | img_url: '' }}" />
+      <img class="for-mobile" src="{{ block.settings.image_mobile | img_url: '' }}" />
+    </div>
+    {% endif %}
+  </div>
+  </div>
+  {% endfor %}
+</div>
+
+
+{% schema %}
+{
+  "name": "Slideshow",
+  "class": "index-section index-section--flush index-section--slideshow",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_overlay",
+      "label": "Show overlay",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image",
+      "name": "Image slide",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "For desktop Image"
+        },
+ {
+          "type": "image_picker",
+          "id": "image_mobile",
+          "label": "For mobile Image"
+        },
+
+
+        {
+          "type": "text",
+          "id": "slide_title",
+          "label":"Title"
+        },
+        {
+          "type": "text",
+          "id": "subheading",
+          "label": "Sub Title"
+        },
+		{
+          "type": "textarea",
+          "id": "para",
+          "label": "Paragraph"
+        },
+		{
+          "type": "text",
+          "id": "button_upper_1",
+          "label": "Button Upper text 1"
+        },
+        {
+          "type": "text",
+          "id": "button_label_1",
+          "label": "Button label 1"
+        },
+		{
+          "type": "text",
+          "id": "button_bottom_1",
+          "label": "Button Bottom text 1"
+        },
+        {
+          "type": "url",
+          "id": "button_link_1",
+          "label": "Button link 1"
+        },
+		{
+          "type": "text",
+          "id": "product_id_1",
+          "label": "Product Id 1"
+        },
+        {
+          "type": "text",
+          "id": "price_id_1",
+          "label": "Price Id 1"
+        },
+		{
+          "type": "text",
+          "id": "plan_name_url_1",
+          "label": "Plan name url 1"
+        },
+		{
+          "type": "text",
+          "id": "button_upper_2",
+          "label": "Button Upper text 2"
+        },
+		{
+          "type": "text",
+          "id": "button_label_2",
+          "label": "Button label 2"
+        },
+		{
+          "type": "text",
+          "id": "button_bottom_2",
+          "label": "Button Bottom text 2"
+        },
+        {
+          "type": "url",
+          "id": "button_link_2",
+          "label": "Button link 2"
+        },
+		{
+          "type": "text",
+          "id": "product_id_2",
+          "label": "Product Id"
+        },
+        {
+          "type": "text",
+          "id": "price_id_2",
+          "label": "Price Id"
+        },
+		{
+          "type": "text",
+          "id": "plan_name_url_2",
+          "label": "Plan name url 2"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Slideshow",
+      "category": "Image",
+      "blocks": [
+        {
+          "type": "image"
+        },
+        {
+          "type": "image"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+
+https://zrj5k8oag454d4sv-8458207329.shopifypreview.com
