@@ -1,0 +1,23 @@
+{% if customer %}
+<div class="container">
+ {% section 'article-wellbeing-template' %}
+</div>
+
+
+
+{% else %}	
+  {% if article.tags contains 'open' %}
+
+  {% section 'article-wellbeing-template-tag' %}  
+ 
+<div class="receipe_popup">
+  <div id="modalOverlay">
+    <div class="modalPopup">
+      <p>{% section "article-newsletter" %}</p>
+      <p>We will send you information on our fitness & nutrition plans.<br>
+        Feel free to opt out anytime.</p>
+    </div>
+  </div>
+</div>
+{%endif%}
+{% endif %}
