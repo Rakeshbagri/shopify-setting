@@ -3,9 +3,3 @@
 
 
 
- {% if request.host == 'yogablitz.com' %}
-    sssssssssssss
-  
-     {%else %}
-  rrrrrrrrrrrrrrr
-    {% endif %}
