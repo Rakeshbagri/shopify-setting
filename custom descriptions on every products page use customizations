@@ -1,0 +1,230 @@
+{% assign blog = product.handle %}
+{% for block in section.blocks %}
+{% if block.settings.featured_blog == blog %}
+ 
+{% if block.settings.display_blog_banner %}
+
+  
+<div class="product_img_sec">
+  <div class="product_img_sec_left">
+    <span class="product_img img_box">
+      {% if block.settings.image != blank %}  
+      <img src="{{ block.settings.image | img_url : '700x' }}">
+      {% endif %}
+    </span>
+  </div>
+
+  <div class="product_img_sec_right"> 
+
+    {% if block.settings.heading != blank %}
+    <h3>{{ block.settings.heading }} </h3>
+    {% endif %}
+    <p>{{ block.settings.text }} </p>
+
+  </div>
+</div>
+
+
+<div class="product_img_sec">
+  <div class="product_img_sec_left">
+    <span class="product_img img_box">
+      {% if block.settings.image1 != blank %}  
+      <img src="{{ block.settings.image1 | img_url : '700x' }}">
+      {% endif %}
+    </span>
+  </div>
+
+  <div class="product_img_sec_right"> 
+
+    {% if block.settings.heading1 != blank %}
+    <h3>{{ block.settings.heading1 }} </h3>
+    {% endif %}
+    <p>{{ block.settings.text1 }} </p>
+
+  </div>
+</div>
+
+
+
+<div class="product_img_sec">
+  <div class="product_img_sec_left">
+    <span class="product_img img_box">
+      {% if block.settings.image2 != blank %}  
+      <img src="{{ block.settings.image2 | img_url : '700x' }}">
+      {% endif %}
+    </span>
+  </div>
+
+  <div class="product_img_sec_right"> 
+
+    {% if block.settings.heading2 != blank %}
+    <h3>{{ block.settings.heading2 }} </h3>
+    {% endif %}
+    <p>{{ block.settings.text2 }} </p>
+
+  </div>
+</div>
+
+
+<div class="product_img_sec">
+  <div class="product_img_sec_left">
+    <span class="product_img img_box">
+      {% if block.settings.image3 != blank %}  
+      <img src="{{ block.settings.image3 | img_url : '700x' }}">
+      {% endif %}
+    </span>
+  </div>
+
+  <div class="product_img_sec_right"> 
+
+    {% if block.settings.heading3 != blank %}
+    <h3>{{ block.settings.heading3 }} </h3>
+    {% endif %}
+    <p>{{ block.settings.text3 }} </p>
+
+  </div>
+</div>
+ 
+
+<div class="product_img_sec">
+  <div class="product_img_sec_left">
+    <span class="product_img img_box">
+      {% if block.settings.image4 != blank %}  
+      <img src="{{ block.settings.image4 | img_url : '700x' }}">
+      {% endif %}
+    </span>
+  </div>
+
+  <div class="product_img_sec_right"> 
+
+    {% if block.settings.heading4 != blank %}
+    <h3>{{ block.settings.heading4 }} </h3>
+    {% endif %}
+    <p>{{ block.settings.text4 }} </p>
+
+  </div>
+</div>
+ 
+ 
+{% endif %}
+
+ 
+
+ 
+{% endif %}
+{% endfor %}
+ 
+{% schema %}
+  {
+    "name": "Products descriptions",
+    "class": "pro-des",
+
+    "settings": [
+	  
+],
+"blocks": [
+      {
+        "type": "block",
+        "name": "Product select",
+        "settings": [
+      {
+        "type": "header",
+        "content": "Show descriptions"
+      },
+	  {
+        "type": "checkbox",
+        "id": "display_blog_banner",
+        "label": "Show ?"
+      },
+	  {
+        "type": "product",
+        "id": "featured_blog",
+        "label": "select product"
+      },
+         {
+                "type": "image_picker",
+                "id": "image",
+                "label": "Image"
+              },
+              {
+                "type": "text",
+                "id" : "heading",
+                "label" : "Title"
+              },
+             {
+                "type": "textarea",
+                "id" : "text",
+                "label" : "Text"
+              },
+{
+                "type": "image_picker",
+                "id": "image1",
+                "label": "Image"
+              },
+              {
+                "type": "text",
+                "id" : "heading1",
+                "label" : "Title"
+              },
+             {
+                "type": "textarea",
+                "id" : "text1",
+                "label" : "Text"
+              },
+{
+                "type": "image_picker",
+                "id": "image2",
+                "label": "Image"
+              },
+              {
+                "type": "text",
+                "id" : "heading2",
+                "label" : "Title"
+              },
+             {
+                "type": "textarea",
+                "id" : "text2",
+                "label" : "Text"
+              },
+{
+                "type": "image_picker",
+                "id": "image3",
+                "label": "Image"
+              },
+              {
+                "type": "text",
+                "id" : "heading3",
+                "label" : "Title"
+              },
+             {
+                "type": "textarea",
+                "id" : "text3",
+                "label" : "Text"
+              },
+{
+                "type": "image_picker",
+                "id": "image4",
+                "label": "Image"
+              },
+              {
+                "type": "text",
+                "id" : "heading4",
+                "label" : "Title"
+              },
+             {
+                "type": "textarea",
+                "id" : "text4",
+                "label" : "Text"
+              }
+     ]
+    }
+  ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
+ 
