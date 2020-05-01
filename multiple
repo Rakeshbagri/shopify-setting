@@ -1,1 +1,1281 @@
 
+
+
+ <div class="multiple-dess">
+   
+      {% for block in section.blocks %}
+		 {% if block.settings.link != blank %}
+{% if block.settings.link == page.handle %}
+
+    {% if block.settings.image != blank %}
+<div class="home-imagebox1" style="color:{{ block.settings.color_1 }} !important; background-color:{{ block.settings.bg_1 }}!important;">
+	 
+	<div class="wrapper">
+      
+      <div class="grid__item one-half img">
+      <div class="img-part">
+      {% if block.settings.image != blank %}
+           <img src="{{ block.settings.image | img_url: "800x800" }}" />
+          {% endif %}
+      
+      </div>
+      </div>
+		<div class="grid__item one-half content">
+			<div class="large--display-table">
+				<div class="large--display-table-cell">
+{% if block.settings.tittle != blank %}	
+                  <h3 style="color:{{ block.settings.color_1 }};"> {{ block.settings.tittle }} </h3> 
+{% endif %}
+ {% if block.settings.text != blank %}
+                  <p style="color:{{ block.settings.color_1 }};">  {{ block.settings.text }} </p>
+{% endif %}
+ {% if block.settings.button-text != blank %}
+<a class="btn btn--regular pop-1 btn--outline btn--light" href="{{ block.settings.url }}" style="color:{{ block.settings.color_1 }}; border-color:{{ block.settings.color_1 }};"> 
+{{ block.settings.button-text }}
+</a>
+{% endif %}							
+ 
+                  
+                  
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+   {% endif %}	
+
+   
+       {% if block.settings.image-2 != blank %}
+<div class="home-imagebox1" style="color:{{ block.settings.color_2 }} !important; background-color:{{ block.settings.bg_2 }}!important;">
+	 
+	<div class="wrapper">
+      
+     
+		<div class="grid__item one-half content">
+			<div class="large--display-table">
+				<div class="large--display-table-cell">
+{% if block.settings.tittle-2 != blank %}	
+                  <h3 style="color:{{ block.settings.color_2 }};"> {{ block.settings.tittle-2 }} </h3> 
+{% endif %}
+ {% if block.settings.text-2 != blank %}
+                  <p style="color:{{ block.settings.color_2 }};">  {{ block.settings.text-2 }} </p>
+{% endif %}
+ {% if block.settings.button-text-2 != blank %}
+<a class="btn btn--regular pop-1 btn--outline btn--light" href="{{ block.settings.url-2 }}" style="color:{{ block.settings.color_2 }}; border-color:{{ block.settings.color_2 }};"> 
+{{ block.settings.button-text-2 }}
+</a>
+{% endif %}							
+ 
+                  
+                  
+				</div>
+			</div>
+		</div>
+      
+       <div class="grid__item one-half img">
+      <div class="img-part">
+      {% if block.settings.image-2 != blank %}
+           <img src="{{ block.settings.image-2 | img_url: "800x800" }}" />
+          {% endif %}
+      
+      </div>
+      </div>
+      
+	</div>
+</div>
+   {% endif %}	
+
+<!-- new block -->   
+{% if block.settings.image-3 != blank %}
+<div class="home-imagebox1" style="color:{{ block.settings.color_3 }} !important; background-color:{{ block.settings.bg_3 }}!important;">
+	 
+	<div class="wrapper">
+        <div class="grid__item one-half img">
+      <div class="img-part">
+      {% if block.settings.image-3 != blank %}
+           <img src="{{ block.settings.image-3 | img_url: "800x800" }}" />
+          {% endif %}
+      
+      </div>
+      </div>
+     
+		<div class="grid__item one-half content">
+			<div class="large--display-table">
+				<div class="large--display-table-cell">
+{% if block.settings.tittle-3 != blank %}	
+                  <h3 style="color:{{ block.settings.color_3 }};"> {{ block.settings.tittle-3 }} </h3> 
+{% endif %}
+ {% if block.settings.text-3 != blank %}
+                  <p style="color:{{ block.settings.color_3 }};">  {{ block.settings.text-3 }} </p>
+{% endif %}
+ {% if block.settings.button-text-3 != blank %}
+<a class="btn btn--regular pop-1 btn--outline btn--light" href="{{ block.settings.url-3 }}" style="color:{{ block.settings.color_3 }}; border-color:{{ block.settings.color_3 }};"> 
+{{ block.settings.button-text-3 }}
+</a>
+{% endif %}							
+ 
+                  
+                  
+				</div>
+			</div>
+		</div>
+      
+     
+      
+	</div>
+</div>
+   {% endif %}	
+   
+   
+   <!-- new block -->   
+{% if block.settings.image-4 != blank %}
+<div class="home-imagebox1" style="color:{{ block.settings.color_4 }} !important; background-color:{{ block.settings.bg_4 }}!important;">
+	 
+	<div class="wrapper">
+      
+     
+		<div class="grid__item one-half content">
+			<div class="large--display-table">
+				<div class="large--display-table-cell">
+{% if block.settings.tittle-4 != blank %}	
+                  <h3 style="color:{{ block.settings.color_4 }};"> {{ block.settings.tittle-4 }} </h3> 
+{% endif %}
+ {% if block.settings.text-4 != blank %}
+                  <p style="color:{{ block.settings.color_4 }};">  {{ block.settings.text-4 }} </p>
+{% endif %}
+ {% if block.settings.button-text-4 != blank %}
+<a class="btn btn--regular pop-1 btn--outline btn--light" href="{{ block.settings.url-4 }}" style="color:{{ block.settings.color_4 }}; border-color:{{ block.settings.color_4 }};"> 
+{{ block.settings.button-text-4 }}
+</a>
+{% endif %}							
+ 
+                  
+                  
+				</div>
+			</div>
+		</div>
+      
+       <div class="grid__item one-half img">
+      <div class="img-part">
+      {% if block.settings.image-4 != blank %}
+           <img src="{{ block.settings.image-4 | img_url: "800x800" }}" />
+          {% endif %}
+      
+      </div>
+      </div>
+      
+	</div>
+</div>
+   {% endif %}
+   
+   <!-- new block -->   
+{% if block.settings.image-5 != blank %}
+<div class="home-imagebox1" style="color:{{ block.settings.color_5 }} !important; background-color:{{ block.settings.bg_5 }}!important;">
+	 
+	<div class="wrapper">
+      
+       <div class="grid__item one-half img">
+      <div class="img-part">
+      {% if block.settings.image-5 != blank %}
+           <img src="{{ block.settings.image-5 | img_url: "800x800" }}" />
+          {% endif %}
+      
+      </div>
+      </div>
+		<div class="grid__item one-half content">
+			<div class="large--display-table">
+				<div class="large--display-table-cell">
+{% if block.settings.tittle-5 != blank %}	
+                  <h3 style="color:{{ block.settings.color_5 }};"> {{ block.settings.tittle-5 }} </h3> 
+{% endif %}
+ {% if block.settings.text-5 != blank %}
+                  <p style="color:{{ block.settings.color_5 }};">  {{ block.settings.text-5 }} </p>
+{% endif %}
+ {% if block.settings.button-text-5 != blank %}
+<a class="btn btn--regular pop-1 btn--outline btn--light" href="{{ block.settings.url-5 }}" style="color:{{ block.settings.color_5 }}; border-color:{{ block.settings.color_5 }};"> 
+{{ block.settings.button-text-5 }}
+</a>
+{% endif %}							
+ 
+                  
+                  
+				</div>
+			</div>
+		</div>
+      
+     
+      
+	</div>
+</div>
+   {% endif %}
+   
+   
+    <!-- new block -->   
+{% if block.settings.image-6 != blank %}
+<div class="home-imagebox1" style="color:{{ block.settings.color_6 }} !important; background-color:{{ block.settings.bg_6 }}!important;">
+   
+  <div class="wrapper">
+      
+     
+    <div class="grid__item one-half content">
+      <div class="large--display-table">
+        <div class="large--display-table-cell">
+{% if block.settings.tittle-6 != blank %} 
+                  <h3 style="color:{{ block.settings.color_6 }};"> {{ block.settings.tittle-6 }} </h3> 
+{% endif %}
+ {% if block.settings.text-6 != blank %}
+                  <p style="color:{{ block.settings.color_6 }};">  {{ block.settings.text-6 }} </p>
+{% endif %}
+ {% if block.settings.button-text-6 != blank %}
+<a class="btn btn--regular pop-1 btn--outline btn--light" href="{{ block.settings.url-6 }}" style="color:{{ block.settings.color_6 }}; border-color:{{ block.settings.color_6 }};"> 
+{{ block.settings.button-text-6 }}
+</a>
+{% endif %}             
+ 
+                  
+                  
+        </div>
+      </div>
+    </div>
+      
+       <div class="grid__item one-half img">
+      <div class="img-part">
+      {% if block.settings.image-6 != blank %}
+           <img src="{{ block.settings.image-6 | img_url: "800x800" }}" />
+          {% endif %}
+      
+      </div>
+      </div>
+      
+  </div>
+</div>
+   {% endif %}
+   
+   <!-- new block -->   
+{% if block.settings.image-7 != blank %}
+<div class="home-imagebox1" style="color:{{ block.settings.color_7 }} !important; background-color:{{ block.settings.bg_7 }}!important;">
+   
+  <div class="wrapper">
+      
+       <div class="grid__item one-half img">
+      <div class="img-part">
+      {% if block.settings.image-7 != blank %}
+           <img src="{{ block.settings.image-7 | img_url: "800x800" }}" />
+          {% endif %}
+      
+      </div>
+      </div>
+    <div class="grid__item one-half content">
+      <div class="large--display-table">
+        <div class="large--display-table-cell">
+{% if block.settings.tittle-7 != blank %} 
+                  <h3 style="color:{{ block.settings.color_7 }};"> {{ block.settings.tittle-7 }} </h3> 
+{% endif %}
+ {% if block.settings.text-7 != blank %}
+                  <p style="color:{{ block.settings.color_7 }};">  {{ block.settings.text-7 }} </p>
+{% endif %}
+ {% if block.settings.button-text-7 != blank %}
+<a class="btn btn--regular pop-1 btn--outline btn--light" href="{{ block.settings.url-7 }}" style="color:{{ block.settings.color_7 }}; border-color:{{ block.settings.color_7 }};"> 
+{{ block.settings.button-text-7 }}
+</a>
+{% endif %}             
+ 
+                  
+                  
+        </div>
+      </div>
+    </div>
+      
+     
+      
+  </div>
+</div>
+   {% endif %}
+          
+   
+   
+    <!-- new block -->   
+{% if block.settings.image-8 != blank %}
+<div class="home-imagebox1" style="color:{{ block.settings.color_8 }} !important; background-color:{{ block.settings.bg_8 }}!important;">
+   
+  <div class="wrapper">
+      
+     
+    <div class="grid__item one-half content">
+      <div class="large--display-table">
+        <div class="large--display-table-cell">
+{% if block.settings.tittle-8 != blank %} 
+                  <h3 style="color:{{ block.settings.color_8 }};"> {{ block.settings.tittle-8 }} </h3> 
+{% endif %}
+ {% if block.settings.text-8 != blank %}
+                  <p style="color:{{ block.settings.color_8 }};">  {{ block.settings.text-8 }} </p>
+{% endif %}
+ {% if block.settings.button-text-8 != blank %}
+<a class="btn btn--regular pop-1 btn--outline btn--light" href="{{ block.settings.url-8 }}" style="color:{{ block.settings.color_8 }}; border-color:{{ block.settings.color_8 }};"> 
+{{ block.settings.button-text-8 }}
+</a>
+{% endif %}             
+ 
+                  
+                  
+        </div>
+      </div>
+    </div>
+      
+       <div class="grid__item one-half img">
+      <div class="img-part">
+      {% if block.settings.image-8 != blank %}
+           <img src="{{ block.settings.image-8 | img_url: "800x800" }}" />
+          {% endif %}
+      
+      </div>
+      </div>
+      
+  </div>
+</div>
+   {% endif %}
+   
+   <!-- new block -->   
+{% if block.settings.image-9 != blank %}
+<div class="home-imagebox1" style="color:{{ block.settings.color_9 }} !important; background-color:{{ block.settings.bg_9 }}!important;">
+   
+  <div class="wrapper">
+      
+       <div class="grid__item one-half img">
+      <div class="img-part">
+      {% if block.settings.image-9 != blank %}
+           <img src="{{ block.settings.image-9 | img_url: "800x800" }}" />
+          {% endif %}
+      
+      </div>
+      </div>
+    <div class="grid__item one-half content">
+      <div class="large--display-table">
+        <div class="large--display-table-cell">
+{% if block.settings.tittle-9 != blank %} 
+                  <h3 style="color:{{ block.settings.color_9 }};"> {{ block.settings.tittle-9 }} </h3> 
+{% endif %}
+ {% if block.settings.text-9 != blank %}
+                  <p style="color:{{ block.settings.color_9 }};">  {{ block.settings.text-9 }} </p>
+{% endif %}
+ {% if block.settings.button-text-9 != blank %}
+<a class="btn btn--regular pop-1 btn--outline btn--light" href="{{ block.settings.url-9 }}" style="color:{{ block.settings.color_9 }}; border-color:{{ block.settings.color_9 }};"> 
+{{ block.settings.button-text-9 }}
+</a>
+{% endif %}             
+ 
+                  
+                  
+        </div>
+      </div>
+    </div>
+      
+     
+      
+  </div>
+</div>
+   {% endif %}
+   
+   
+    <!-- new block -->   
+{% if block.settings.image-10 != blank %}
+<div class="home-imagebox1" style="color:{{ block.settings.color_10 }} !important; background-color:{{ block.settings.bg_10 }}!important;">
+   
+  <div class="wrapper">
+      
+     
+    <div class="grid__item one-half content">
+      <div class="large--display-table">
+        <div class="large--display-table-cell">
+{% if block.settings.tittle-10 != blank %} 
+                  <h3 style="color:{{ block.settings.color_10 }};"> {{ block.settings.tittle-10 }} </h3> 
+{% endif %}
+ {% if block.settings.text-10 != blank %}
+                  <p style="color:{{ block.settings.color_10 }};">  {{ block.settings.text-10 }} </p>
+{% endif %}
+ {% if block.settings.button-text-10 != blank %}
+<a class="btn btn--regular pop-1 btn--outline btn--light" href="{{ block.settings.url-10 }}" style="color:{{ block.settings.color_10 }}; border-color:{{ block.settings.color_10 }};"> 
+{{ block.settings.button-text-10 }}
+</a>
+{% endif %}             
+ 
+                  
+                  
+        </div>
+      </div>
+    </div>
+      
+       <div class="grid__item one-half img">
+      <div class="img-part">
+      {% if block.settings.image-10 != blank %}
+           <img src="{{ block.settings.image-10 | img_url: "800x800" }}" />
+          {% endif %}
+      
+      </div>
+      </div>
+      
+  </div>
+</div>
+   {% endif %}
+   
+   <!-- new block -->   
+{% if block.settings.image-11 != blank %}
+<div class="home-imagebox1" style="color:{{ block.settings.color_11 }} !important; background-color:{{ block.settings.bg_11 }}!important;">
+   
+  <div class="wrapper">
+      
+       <div class="grid__item one-half img">
+      <div class="img-part">
+      {% if block.settings.image-11 != blank %}
+           <img src="{{ block.settings.image-11 | img_url: "800x800" }}" />
+          {% endif %}
+      
+      </div>
+      </div>
+    <div class="grid__item one-half content">
+      <div class="large--display-table">
+        <div class="large--display-table-cell">
+{% if block.settings.tittle-11 != blank %} 
+                  <h3 style="color:{{ block.settings.color_11 }};"> {{ block.settings.tittle-11 }} </h3> 
+{% endif %}
+ {% if block.settings.text-11 != blank %}
+                  <p style="color:{{ block.settings.color_11 }};">  {{ block.settings.text-11 }} </p>
+{% endif %}
+ {% if block.settings.button-text-11 != blank %}
+<a class="btn btn--regular pop-1 btn--outline btn--light" href="{{ block.settings.url-11 }}" style="color:{{ block.settings.color_11 }}; border-color:{{ block.settings.color_11 }};"> 
+{{ block.settings.button-text-11 }}
+</a>
+{% endif %}             
+ 
+                  
+                  
+        </div>
+      </div>
+    </div>
+      
+     
+      
+  </div>
+</div>
+   {% endif %}
+   
+   
+    <!-- new block -->   
+{% if block.settings.image-12 != blank %}
+<div class="home-imagebox1" style="color:{{ block.settings.color_12 }} !important; background-color:{{ block.settings.bg_12 }}!important;">
+   
+  <div class="wrapper">
+      
+     
+    <div class="grid__item one-half content">
+      <div class="large--display-table">
+        <div class="large--display-table-cell">
+{% if block.settings.tittle-12 != blank %} 
+                  <h3 style="color:{{ block.settings.color_12 }};"> {{ block.settings.tittle-12 }} </h3> 
+{% endif %}
+ {% if block.settings.text-12 != blank %}
+                  <p style="color:{{ block.settings.color_12 }};">  {{ block.settings.text-12 }} </p>
+{% endif %}
+ {% if block.settings.button-text-12 != blank %}
+<a class="btn btn--regular pop-1 btn--outline btn--light" href="{{ block.settings.url-12 }}" style="color:{{ block.settings.color_12 }}; border-color:{{ block.settings.color_12 }};"> 
+{{ block.settings.button-text-12 }}
+</a>
+{% endif %}             
+ 
+                  
+                  
+        </div>
+      </div>
+    </div>
+      
+       <div class="grid__item one-half img">
+      <div class="img-part">
+      {% if block.settings.image-12 != blank %}
+           <img src="{{ block.settings.image-12 | img_url: "800x800" }}" />
+          {% endif %}
+      
+      </div>
+      </div>
+      
+  </div>
+</div>
+   {% endif %}
+   
+   <!-- new block -->   
+{% if block.settings.image-13 != blank %}
+<div class="home-imagebox1" style="color:{{ block.settings.color_13 }} !important; background-color:{{ block.settings.bg_13 }}!important;">
+   
+  <div class="wrapper">
+      
+       <div class="grid__item one-half img">
+      <div class="img-part">
+      {% if block.settings.image-13 != blank %}
+           <img src="{{ block.settings.image-13 | img_url: "800x800" }}" />
+          {% endif %}
+      
+      </div>
+      </div>
+    <div class="grid__item one-half content">
+      <div class="large--display-table">
+        <div class="large--display-table-cell">
+{% if block.settings.tittle-13 != blank %} 
+                  <h3 style="color:{{ block.settings.color_13 }};"> {{ block.settings.tittle-13 }} </h3> 
+{% endif %}
+ {% if block.settings.text-13 != blank %}
+                  <p style="color:{{ block.settings.color_13 }};">  {{ block.settings.text-13 }} </p>
+{% endif %}
+ {% if block.settings.button-text-13 != blank %}
+<a class="btn btn--regular pop-1 btn--outline btn--light" href="{{ block.settings.url-13 }}" style="color:{{ block.settings.color_13 }}; border-color:{{ block.settings.color_13 }};"> 
+{{ block.settings.button-text-13 }}
+</a>
+{% endif %}             
+ 
+                  
+                  
+        </div>
+      </div>
+    </div>
+      
+     
+      
+  </div>
+</div>
+   {% endif %}
+   
+   
+    <!-- new block -->   
+{% if block.settings.image-14 != blank %}
+<div class="home-imagebox1" style="color:{{ block.settings.color_14 }} !important; background-color:{{ block.settings.bg_14 }}!important;">
+   
+  <div class="wrapper">
+      
+     
+    <div class="grid__item one-half content">
+      <div class="large--display-table">
+        <div class="large--display-table-cell">
+{% if block.settings.tittle-14 != blank %} 
+                  <h3 style="color:{{ block.settings.color_14 }};"> {{ block.settings.tittle-14 }} </h3> 
+{% endif %}
+ {% if block.settings.text-14 != blank %}
+                  <p style="color:{{ block.settings.color_14 }};">  {{ block.settings.text-14 }} </p>
+{% endif %}
+ {% if block.settings.button-text-14 != blank %}
+<a class="btn btn--regular pop-1 btn--outline btn--light" href="{{ block.settings.url-14 }}" style="color:{{ block.settings.color_14 }}; border-color:{{ block.settings.color_14 }};"> 
+{{ block.settings.button-text-14 }}
+</a>
+{% endif %}             
+ 
+                  
+                  
+        </div>
+      </div>
+    </div>
+      
+       <div class="grid__item one-half img">
+      <div class="img-part">
+      {% if block.settings.image-14 != blank %}
+           <img src="{{ block.settings.image-14 | img_url: "800x800" }}" />
+          {% endif %}
+      
+      </div>
+      </div>
+      
+  </div>
+</div>
+   {% endif %}
+   
+   <!-- new block -->   
+{% if block.settings.image-15 != blank %}
+<div class="home-imagebox1" style="color:{{ block.settings.color_15 }} !important; background-color:{{ block.settings.bg_15 }}!important;">
+   
+  <div class="wrapper">
+      
+       <div class="grid__item one-half img">
+      <div class="img-part">
+      {% if block.settings.image-15 != blank %}
+           <img src="{{ block.settings.image-15 | img_url: "800x800" }}" />
+          {% endif %}
+      
+      </div>
+      </div>
+    <div class="grid__item one-half content">
+      <div class="large--display-table">
+        <div class="large--display-table-cell">
+{% if block.settings.tittle-15 != blank %} 
+                  <h3 style="color:{{ block.settings.color_15 }};"> {{ block.settings.tittle-15 }} </h3> 
+{% endif %}
+ {% if block.settings.text-15 != blank %}
+                  <p style="color:{{ block.settings.color_15 }};">  {{ block.settings.text-15 }} </p>
+{% endif %}
+ {% if block.settings.button-text-15 != blank %}
+<a class="btn btn--regular pop-1 btn--outline btn--light" href="{{ block.settings.url-15 }}" style="color:{{ block.settings.color_15 }}; border-color:{{ block.settings.color_15 }};"> 
+{{ block.settings.button-text-15 }}
+</a>
+{% endif %}             
+ 
+                  
+                  
+        </div>
+      </div>
+    </div>
+      
+     
+      
+  </div>
+</div>
+   {% endif %}
+   
+   <!-- forloop -->
+         {% endif %}       
+      {% endif %}    
+    {% endfor %}
+   
+   
+</div>
+   
+   
+
+{% schema %}
+  {
+    "name": "Content",
+    "settings": [
+],
+
+  "blocks": [
+        {
+          "type": "logo_image",
+          "name": "images text button",
+          "settings": [
+        {
+          "type": "page",
+          "id": "link",
+          "label": "Select page",
+          "info": "Please choose page here"
+        },
+     
+
+         {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image Block 1"
+          },
+         {
+        "type": "color",
+        "id": "color_1",
+        "label": "text color",
+        "default": "#000"
+      },
+  {
+        "type": "color",
+        "id": "bg_1",
+        "label": "Background color",
+        "default": "#E1E1E1"
+      },
+      {
+            "type": "text",
+            "id": "tittle",
+            "label": "Tittle Block 1"
+           
+          },
+         {
+            "type": "richtext",
+            "id": "text",
+            "label": "Content block 1"
+           
+          },
+         {
+            "type": "text",
+            "id": "button-text",
+            "label": "Button label block 1"
+            
+          },
+          {
+            "type": "url",
+            "id": "url",
+            "label": "Button url 1"
+          },
+
+           {
+            "type": "image_picker",
+            "id": "image-2",
+            "label": "Image block 2"
+          },
+       {
+        "type": "color",
+        "id": "color_2",
+        "label": "text color",
+        "default": "#000"
+      },
+  {
+        "type": "color",
+        "id": "bg_2",
+        "label": "Background color",
+        "default": "#E1E1E1"
+      },
+
+          {
+            "type": "text",
+            "id": "tittle-2",
+            "label": "Tittle block 2"
+            
+          },
+         {
+            "type": "richtext",
+            "id": "text-2",
+            "label": "Conten block 2"
+          },
+         {
+            "type": "text",
+            "id": "button-text-2",
+            "label": "Button label block 2"
+            
+          },
+          {
+            "type": "url",
+            "id": "url-2",
+            "label": "Button url 2"
+          },
+        {
+            "type": "image_picker",
+            "id": "image-3",
+            "label": "Image block 3"
+          },
+       {
+        "type": "color",
+        "id": "color_3",
+        "label": "text color",
+        "default": "#000"
+      },
+  {
+        "type": "color",
+        "id": "bg_3",
+        "label": "Background color",
+        "default": "#E1E1E1"
+      },
+
+          {
+            "type": "text",
+            "id": "tittle-3",
+            "label": "Tittle block 3"
+            
+          },
+         {
+            "type": "richtext",
+            "id": "text-3",
+            "label": "Conten block 3"
+          },
+         {
+            "type": "text",
+            "id": "button-text-3",
+            "label": "Button label block 3"
+            
+          },
+          {
+            "type": "url",
+            "id": "url-3",
+            "label": "Button url 3"
+          },
+
+
+ {
+            "type": "image_picker",
+            "id": "image-4",
+            "label": "Image block 4"
+          },
+       {
+        "type": "color",
+        "id": "color_4",
+        "label": "text color",
+        "default": "#000"
+      },
+  {
+        "type": "color",
+        "id": "bg_4",
+        "label": "Background color",
+        "default": "#E1E1E1"
+      },
+
+          {
+            "type": "text",
+            "id": "tittle-4",
+            "label": "Tittle block 4"
+            
+          },
+         {
+            "type": "richtext",
+            "id": "text-4",
+            "label": "Conten block 4"
+          },
+         {
+            "type": "text",
+            "id": "button-text-4",
+            "label": "Button label block 4"
+            
+          },
+          {
+            "type": "url",
+            "id": "url-4",
+            "label": "Button url 4"
+          },
+
+
+ {
+            "type": "image_picker",
+            "id": "image-5",
+            "label": "Image block 5"
+          },
+       {
+        "type": "color",
+        "id": "color_5",
+        "label": "text color",
+        "default": "#000"
+      },
+  {
+        "type": "color",
+        "id": "bg_5",
+        "label": "Background color",
+        "default": "#E1E1E1"
+      },
+
+          {
+            "type": "text",
+            "id": "tittle-5",
+            "label": "Tittle block 5"
+            
+          },
+         {
+            "type": "richtext",
+            "id": "text-5",
+            "label": "Conten block 5"
+          },
+         {
+            "type": "text",
+            "id": "button-text-5",
+            "label": "Button label block 5"
+            
+          },
+          {
+            "type": "url",
+            "id": "url-5",
+            "label": "Button url 5"
+          },
+
+ {
+            "type": "image_picker",
+            "id": "image-6",
+            "label": "Image block 6"
+          },
+       {
+        "type": "color",
+        "id": "color_6",
+        "label": "text color",
+        "default": "#000"
+      },
+  {
+        "type": "color",
+        "id": "bg_6",
+        "label": "Background color",
+        "default": "#E1E1E1"
+      },
+
+          {
+            "type": "text",
+            "id": "tittle-6",
+            "label": "Tittle block 6"
+            
+          },
+         {
+            "type": "richtext",
+            "id": "text-6",
+            "label": "Conten block 6"
+          },
+         {
+            "type": "text",
+            "id": "button-text-6",
+            "label": "Button label block 6"
+            
+          },
+          {
+            "type": "url",
+            "id": "url-6",
+            "label": "Button url 6"
+          },
+ {
+            "type": "image_picker",
+            "id": "image-7",
+            "label": "Image block 7"
+          },
+       {
+        "type": "color",
+        "id": "color_7",
+        "label": "text color",
+        "default": "#000"
+      },
+  {
+        "type": "color",
+        "id": "bg_7",
+        "label": "Background color",
+        "default": "#E1E1E1"
+      },
+
+          {
+            "type": "text",
+            "id": "tittle-7",
+            "label": "Tittle block 7"
+            
+          },
+         {
+            "type": "richtext",
+            "id": "text-7",
+            "label": "Conten block 7"
+          },
+         {
+            "type": "text",
+            "id": "button-text-7",
+            "label": "Button label block 7"
+            
+          },
+          {
+            "type": "url",
+            "id": "url-7",
+            "label": "Button url 7"
+          },
+ {
+            "type": "image_picker",
+            "id": "image-8",
+            "label": "Image block 8"
+          },
+       {
+        "type": "color",
+        "id": "color_8",
+        "label": "text color",
+        "default": "#000"
+      },
+  {
+        "type": "color",
+        "id": "bg_8",
+        "label": "Background color",
+        "default": "#E1E1E1"
+      },
+
+          {
+            "type": "text",
+            "id": "tittle-8",
+            "label": "Tittle block 8"
+            
+          },
+         {
+            "type": "richtext",
+            "id": "text-8",
+            "label": "Conten block 8"
+          },
+         {
+            "type": "text",
+            "id": "button-text-8",
+            "label": "Button label block 8"
+            
+          },
+          {
+            "type": "url",
+            "id": "url-8",
+            "label": "Button url 8"
+          },
+
+ {
+            "type": "image_picker",
+            "id": "image-9",
+            "label": "Image block 9"
+          },
+       {
+        "type": "color",
+        "id": "color_9",
+        "label": "text color",
+        "default": "#000"
+      },
+  {
+        "type": "color",
+        "id": "bg_9",
+        "label": "Background color",
+        "default": "#E1E1E1"
+      },
+
+          {
+            "type": "text",
+            "id": "tittle-9",
+            "label": "Tittle block 9"
+            
+          },
+         {
+            "type": "richtext",
+            "id": "text-9",
+            "label": "Conten block 9"
+          },
+         {
+            "type": "text",
+            "id": "button-text-9",
+            "label": "Button label block 9"
+            
+          },
+          {
+            "type": "url",
+            "id": "url-9",
+            "label": "Button url 9"
+          },
+
+ {
+            "type": "image_picker",
+            "id": "image-10",
+            "label": "Image block 10"
+          },
+       {
+        "type": "color",
+        "id": "color_10",
+        "label": "text color",
+        "default": "#000"
+      },
+  {
+        "type": "color",
+        "id": "bg_10",
+        "label": "Background color",
+        "default": "#E1E1E1"
+      },
+
+          {
+            "type": "text",
+            "id": "tittle-10",
+            "label": "Tittle block 10"
+            
+          },
+         {
+            "type": "richtext",
+            "id": "text-10",
+            "label": "Conten block 10"
+          },
+         {
+            "type": "text",
+            "id": "button-text-10",
+            "label": "Button label block 10"
+            
+          },
+          {
+            "type": "url",
+            "id": "url-10",
+            "label": "Button url 10"
+          },
+
+ {
+            "type": "image_picker",
+            "id": "image-11",
+            "label": "Image block 11"
+          },
+       {
+        "type": "color",
+        "id": "color_11",
+        "label": "text color",
+        "default": "#000"
+      },
+  {
+        "type": "color",
+        "id": "bg_11",
+        "label": "Background color",
+        "default": "#E1E1E1"
+      },
+
+          {
+            "type": "text",
+            "id": "tittle-11",
+            "label": "Tittle block 11"
+            
+          },
+         {
+            "type": "richtext",
+            "id": "text-11",
+            "label": "Conten block 11"
+          },
+         {
+            "type": "text",
+            "id": "button-text-11",
+            "label": "Button label block 11"
+            
+          },
+          {
+            "type": "url",
+            "id": "url-11",
+            "label": "Button url 11"
+          },
+
+ {
+            "type": "image_picker",
+            "id": "image-12",
+            "label": "Image block 12"
+          },
+       {
+        "type": "color",
+        "id": "color_12",
+        "label": "text color",
+        "default": "#000"
+      },
+  {
+        "type": "color",
+        "id": "bg_12",
+        "label": "Background color",
+        "default": "#E1E1E1"
+      },
+
+          {
+            "type": "text",
+            "id": "tittle-12",
+            "label": "Tittle block 12"
+            
+          },
+         {
+            "type": "richtext",
+            "id": "text-12",
+            "label": "Conten block 12"
+          },
+         {
+            "type": "text",
+            "id": "button-text-12",
+            "label": "Button label block 12"
+            
+          },
+          {
+            "type": "url",
+            "id": "url-12",
+            "label": "Button url 12"
+          },
+
+ {
+            "type": "image_picker",
+            "id": "image-13",
+            "label": "Image block 13"
+          },
+       {
+        "type": "color",
+        "id": "color_13",
+        "label": "text color",
+        "default": "#000"
+      },
+  {
+        "type": "color",
+        "id": "bg_13",
+        "label": "Background color",
+        "default": "#E1E1E1"
+      },
+
+          {
+            "type": "text",
+            "id": "tittle-13",
+            "label": "Tittle block 13"
+            
+          },
+         {
+            "type": "richtext",
+            "id": "text-13",
+            "label": "Conten block 13"
+          },
+         {
+            "type": "text",
+            "id": "button-text-13",
+            "label": "Button label block 13"
+            
+          },
+          {
+            "type": "url",
+            "id": "url-13",
+            "label": "Button url 13"
+          },
+ {
+            "type": "image_picker",
+            "id": "image-14",
+            "label": "Image block 14"
+          },
+       {
+        "type": "color",
+        "id": "color_14",
+        "label": "text color",
+        "default": "#000"
+      },
+  {
+        "type": "color",
+        "id": "bg_14",
+        "label": "Background color",
+        "default": "#E1E1E1"
+      },
+
+          {
+            "type": "text",
+            "id": "tittle-14",
+            "label": "Tittle block 14"
+            
+          },
+         {
+            "type": "richtext",
+            "id": "text-14",
+            "label": "Conten block 14"
+          },
+         {
+            "type": "text",
+            "id": "button-text-14",
+            "label": "Button label block 14"
+            
+          },
+          {
+            "type": "url",
+            "id": "url-14",
+            "label": "Button url 14"
+          },
+ {
+            "type": "image_picker",
+            "id": "image-15",
+            "label": "Image block 15"
+          },
+       {
+        "type": "color",
+        "id": "color_15",
+        "label": "text color",
+        "default": "#000"
+      },
+  {
+        "type": "color",
+        "id": "bg_15",
+        "label": "Background color",
+        "default": "#E1E1E1"
+      },
+
+          {
+            "type": "text",
+            "id": "tittle-15",
+            "label": "Tittle block 15"
+            
+          },
+         {
+            "type": "richtext",
+            "id": "text-15",
+            "label": "Conten block 15"
+          },
+         {
+            "type": "text",
+            "id": "button-text-15",
+            "label": "Button label block 15"
+            
+          },
+          {
+            "type": "url",
+            "id": "url-15",
+            "label": "Button url 15"
+          }
+
+    
+         ]
+      }
+	]
+
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
