@@ -1,0 +1,14 @@
+          {%- assign first_page = pages[section.settings.page1] -%}
+   
+
+  
+  <div class="size-chart-wrap">
+    {{ section.settings.title1 }} 
+    {{- first_page.content -}}
+  </div>
+  
+ {
+        "type": "page",
+        "id": "page1",
+        "label": "Page content"
+      },
