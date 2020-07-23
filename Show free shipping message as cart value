@@ -1,0 +1,54 @@
+<div class="promo_banner__content">
+             {%- if settings.cart_free_shipping_enable -%}
+                      <div class="cart__free-shipping gutter-ele-small-top gutter-ele-small-bottom">
+                        {%- assign free_shipping_goal = settings.cart_free_shipping_goal | times: 100 -%}
+                        <p class="cart__free-shipping__text margin0">
+                         <strong>
+                          <span class="free-shipping-text">
+                            {%- if cart.total_price >= free_shipping_goal -%}
+                              {{ settings.cart_free_shipping_goal_text }}
+                            {%- else -%}
+                              {%- assign free_remain_amount = free_shipping_goal | minus: cart.total_price -%}
+                              {%- capture free_remain_amount_html -%}<strong>{%- render 'price' with free_remain_amount -%}</strong>{%- endcapture -%}
+                              {{ settings.cart_free_shipping_progress_text | replace: '[remain_amount]',free_remain_amount_html }}  
+                            {%- endif -%}
+                          </span>
+                          </strong>
+                        </p>
+                      </div>  
+                      {%- endif -%}
+                      
+                      
+                      
+                      add in genral setting 
+
+{
+        "type": "header",
+        "content": "Free shippng text"
+      },
+      {
+        "type": "checkbox",
+        "id": "cart_free_shipping_enable",
+        "label": "Enable",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "cart_free_shipping_goal",
+        "label": "Free shipping goal",
+        "default": "5000"
+      },
+      {
+        "type": "text",
+        "id": "cart_free_shipping_goal_text",
+        "label": "Goal achieved text",
+        "default": "Congratulations! You've got free shipping.",
+        "info": "Display when cart value is greater than the goal."
+      },
+      {
+        "type": "text",
+        "id": "cart_free_shipping_progress_text",
+        "label": "Progress text",
+        "default": "Only [remain_amount] away from free shipping.",
+        "info": "Display when cart value is less than the goal."
+      }
