@@ -1,0 +1,83 @@
+
+https://johnpride.in/ add custom field on register page data save in customer note
+
+<section data-section-id="reset-password" data-section-type="reset-password">
+  <div class="Container">
+    <div class="PageContent PageContent--fitScreen PageContent--extraNarrow">
+      {%- form 'create_customer', name: 'create_customer', class: 'Form Form--spacingTight', id: 'create_customer' -%}
+      <header class="Form__Header">
+        <h1 class="Form__Title Heading u-h1">{{ 'customer.register.title' | t }}</h1>
+        <p class="Form__Legend">{{ 'customer.register.description' | t }}</p>
+      </header>
+
+      {%- if form.errors -%}
+      <div class="Form__Alert Alert Alert--error">
+        <ul class="Alert__ErrorList">
+          {%- for field in form.errors -%}
+          {%- if field == 'form' -%}
+          <li class="Alert__ErrorItem">{{ form.errors.messages[field] }}</li>
+          {%- else -%}
+          <li class="Alert__ErrorItem"><strong>{{ form.errors.translated_fields[field] }}</strong> {{ form.errors.messages[field] }}</li>
+          {%- endif -%}
+          {%- endfor -%}
+        </ul>
+      </div>
+      {%- endif -%}
+
+      <div class="Form__Item Form__Item_Img_Np">
+        <input type='file' id="imgInp" name="customer[note][Customer : Shopify Plus Plan Required...]"/>
+        <img id="blah" src="https://cdn.shopify.com/s/files/1/2273/9091/t/48/assets/profile-image.png" alt="your image" />
+      </div>
+
+      <div class="Form__Item">
+        <input type="text" autocomplete="off" class="Form__Input" name="customer[first_name]" aria-label="{{ 'customer.register.first_name' | t }}" placeholder="{{ 'customer.register.first_name' | t }}" autofocus>
+        <label class="Form__FloatingLabel">{{ 'customer.register.first_name' | t }}</label>
+      </div>
+
+      <div class="Form__Item">
+        <input type="text" autocomplete="off" class="Form__Input" name="customer[last_name]" aria-label="{{ 'customer.register.last_name' | t }}" placeholder="{{ 'customer.register.last_name' | t }}">
+        <label class="Form__FloatingLabel">{{ 'customer.register.last_name' | t }}</label>
+      </div>
+
+      <!-- Mobile Number -->
+      <div class="Form__Item">
+        <input type="text" autocomplete="off" class="Form__Input"  name="customer[note][Mobile No.]" aria-label="Mobile Number" placeholder="Mobile Number">
+        <label class="Form__FloatingLabel">Mobile Number</label>
+      </div>
+
+      <!-- Date of Birth -->
+      <div class="Form__Item" id="My_Date_of_Birth">
+        <input type="text" autocomplete="off" class="Form__Input"  name="customer[note][Date of Birth]" aria-label="Date of Birth" placeholder="DD/MM/YYYY">
+        <label class="Form__FloatingLabel">Date of Birth</label>
+      </div>
+      {% comment %}
+      <!-- Mobile Number -->
+      <div class="Form__Item Form__Item_Married">
+        <label class="Form__FloatingLabel">Are you Married?</label><br>
+        <input type="radio" id="YesMarried" name="married_or_not" my-value="Married : Yes" value="" /> Yes<br>
+        <input type="radio" id="NotMarried" name="married_or_not" my-value="Married : No" value="" /> No
+        <input style="display: none;" type="text" id="customerYNOptions" name="customer[note][Married :]" value="" />
+      </div>
+      {% endcomment %}
+      
+      <div id="customerYNOptionsDOA" class="Form__Item Form__Item_Married">
+        <input type="text" class="Form__Input" id="customerYNOptionsa" name="customer[note][Date of Anniversary :]"  placeholder="example: 14 Feb." value="" />
+        <label class="Form__FloatingLabel">Date of Anniversary.</label>
+      </div>
+
+      <div class="Form__Item">
+        <input type="email" autocomplete="off" class="Form__Input" name="customer[email]" aria-label="{{ 'customer.register.email' | t }}" placeholder="{{ 'customer.register.email' | t }}" required="required">
+        <label class="Form__FloatingLabel">{{ 'customer.register.email' | t }}</label>
+      </div>
+
+      <div class="Form__Item">
+        <input type="password" class="Form__Input" name="customer[password]" aria-label="{{ 'customer.register.password' | t }}" placeholder="{{ 'customer.register.password' | t }}" required="required">
+        <label class="Form__FloatingLabel">{{ 'customer.register.password' | t }}</label>
+      </div>
+
+      <button type="submit" class="Form__Submit Button Button--primary Button--full">{{ 'customer.register.submit' | t }}</button>
+      {%- endform -%}
+    </div>
+  </div>
+</section>
+
