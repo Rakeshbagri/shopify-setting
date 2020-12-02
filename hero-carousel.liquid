@@ -1,0 +1,217 @@
+<div class="main_hero">
+
+  {% for block in section.blocks %}
+
+  <div class="loop">
+    {% include 'responsive-image' with
+          image: block.settings.image,
+    max_width: 2300,
+    max_height: 800,
+    image_class: 'card-img ',
+    image_attributes: "data-product-featured-image",
+    wrapper_class: 'd-none d-md-block'
+    wrapper_attributes: "data-product-image-wrapper",
+    %}
+    {% include 'responsive-image' with
+          image: block.settings.image_mobile,
+    max_width: 800,
+    max_height: 2400,
+    image_class: 'card-img ',
+    image_attributes: "data-product-featured-image",
+    wrapper_class: 'd-md-none'
+    wrapper_attributes: "data-product-image-wrapper",
+    %}
+
+    <div class="card-img-overlay jumbotron-fluid d-flex justify-content-center text-p-{{ block.settings.alignment }} mb-3 mb-sm-0">
+      <div class="flex-row my-md-auto mt-auto text-center align-self-center">
+        <div class="col-md-6 text-center mb-0">
+          {% if block.settings.heading != blank %}
+          <h1 style="color: {{ block.settings.color_body_text }} ;" class="display-4">{{ block.settings.heading  }}</h1>
+          {% endif %}
+
+          <div class="row d-flex justify-content-center">
+
+            <div class="center-on-mobile">
+              {% if block.settings.btn-text-1 != blank %}
+              {% if block.settings.btn-url-1 != blank %}
+              <a href="{{block.settings.btn-url-1}}" class="btn btn-tonewood">{{block.settings.btn-text-1}}</a>
+              {% else  %}
+              <button type="button" class="btn btn-tonewood btn_video_modal" data-toggle="modal" data-target="#videoModal" data-src="https://www.youtube.com/embed/{{block.settings.btn-video-1}}">{{block.settings.btn-text-1}}</button> 
+              {% endif  %}
+             {% endif  %}
+               {% if block.settings.btn-text-2 != blank %}
+               {% if block.settings.btn-url-2 != blank %}
+              <a href="{{block.settings.btn-url-2}}" class="btn btn-tonewood">{{block.settings.btn-text-2}}</a>
+              {% else  %}
+              <button type="button" class="btn btn-tonewood btn_video_modal" data-toggle="modal" data-target="#videoModal" data-src="https://www.youtube.com/embed/{{block.settings.btn-video-2}}">{{block.settings.btn-text-2}}</button> 
+              {% endif  %}
+                 {% endif  %}
+            </div>
+
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+<script>
+  jQuery(document).ready(function($){
+    $('.main_hero').slick({
+      infinite: true,
+      slidesToShow: 1,
+      slidesToScroll: 1, 
+      prevArrow: '<a class="carousel-control-btn carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev"><img src="//cdn.shopify.com/s/files/1/2032/9399/t/32/assets/prev_white_arrow_small.png?v=658402519974593765" /><span class="sr-only">Previous</span></a>',
+      nextArrow: '<a class="carousel-control-btn carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next"><img src="//cdn.shopify.com/s/files/1/2032/9399/t/32/assets/next_white_arrow_small.png?v=13917376460575078016" /><span class="sr-only">Next</span></a>',
+      autoplay: true,
+      adaptiveHeight: false,
+      autoplaySpeed: {{ section.settings.autoplay_speed }}
+    });
+    });
+</script>
+
+{% schema %}
+{
+"name": "Hero Carousel",
+"settings": [
+{
+"type": "select",
+"id": "autoplay_speed",
+"label": "Change slides every",
+"options": [
+{ "value": "2000", "label": "2 seconds" },
+{ "value": "3000", "label": "3 seconds" },
+{ "value": "5000", "label": "5 seconds" },
+{ "value": "7000", "label": "7 seconds" },
+{ "value": "9000", "label": "9 seconds" },
+{ "value": "10000", "label": "10 seconds" }
+],
+"default": "7000"
+},
+{
+"type": "select",
+"id": "slider-height",
+"label": "Select slider height",
+"options": [
+{ "value": "400", "label": "400px" },
+{ "value": "500", "label": "500px" },
+{ "value": "600", "label": "600px" },
+{ "value": "700", "label": "700px" },
+{ "value": "800", "label": "800px" },
+{ "value": "900", "label": "900px" },
+{ "value": "auto", "label": "auto" }
+],
+"default": "600"
+} 
+
+
+],
+
+"blocks": [
+{
+"type": "Image",
+"name": "Hero Carousel",
+"settings": [
+{
+"type": "select",
+"id": "alignment",
+"label": "Text alignment",
+"default": "center",
+"options": [
+{
+"value": "left",
+"label": "Left"
+},
+{
+"value": "center",
+"label": "Middle"
+},
+{
+"value": "right",
+"label": "Right"
+}
+]
+},
+{
+"type": "color",
+"id": "color_body_text",
+"label": "Text color",
+"default": "#fff"
+},
+
+{
+"label": "Heading",
+"id": "heading",
+"type": "text"
+},
+
+{
+"type": "header",
+"content": "Button 1"
+},
+{
+"label": "Button text",
+"id": "btn-text-1",
+"type": "text"
+},
+{
+"label": "Button URL",
+"id": "btn-url-1",
+"type": "url"
+},
+{
+"label": "Youtube video id",
+"id": "btn-video-1",
+"type": "text"
+},
+
+{
+"type": "header",
+"content": "Button 2"
+},
+{
+"label": "Button text",
+"id": "btn-text-2",
+"type": "text"
+},
+{
+"label": "Button URL",
+"id": "btn-url-2",
+"type": "url"
+},
+{
+"label": "Youtube video id",
+"id": "btn-video-2",
+"type": "text"
+},
+
+
+{
+"type": "image_picker",
+"id": "image",
+"label": "Image"
+},
+{
+"type": "image_picker",
+"id": "image_mobile",
+"label": "Mobile Image"
+}
+
+
+]
+}
+],
+
+
+"presets": [
+{
+"name": "Hero Carousel",
+"category": "Image"
+}
+]
+}
+{% endschema %}
