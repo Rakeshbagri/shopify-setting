@@ -36,14 +36,18 @@
               {% if block.settings.btn-url-1 != blank %}
               <a href="{{block.settings.btn-url-1}}" class="btn btn-tonewood">{{block.settings.btn-text-1}}</a>
               {% else  %}
-              <button type="button" class="btn btn-tonewood btn_video_modal" data-toggle="modal" data-target="#videoModal" data-src="https://www.youtube.com/embed/{{block.settings.btn-video-1}}">{{block.settings.btn-text-1}}</button> 
+      <button type="button" class="btn btn-tonewood btn_video_modal" data-toggle="modal" data-target="#videoModal">
+        <span data-src="https://www.youtube.com/embed/{{ block.settings.btn-video-1 }}?autoplay=1&mute=0"> {{block.settings.btn-text-1}} </span></button> 
+
+ 
               {% endif  %}
              {% endif  %}
                {% if block.settings.btn-text-2 != blank %}
                {% if block.settings.btn-url-2 != blank %}
               <a href="{{block.settings.btn-url-2}}" class="btn btn-tonewood">{{block.settings.btn-text-2}}</a>
               {% else  %}
-              <button type="button" class="btn btn-tonewood btn_video_modal" data-toggle="modal" data-target="#videoModal" data-src="https://www.youtube.com/embed/{{block.settings.btn-video-2}}">{{block.settings.btn-text-2}}</button> 
+              <button type="button" class="btn btn-tonewood btn_video_modal" data-toggle="modal" data-target="#videoModal">
+                <span data-src="https://www.youtube.com/embed/{{ block.settings.btn-video-2 }}?autoplay=1&mute=0"> {{block.settings.btn-text-2}} </span></button> 
               {% endif  %}
                  {% endif  %}
             </div>
