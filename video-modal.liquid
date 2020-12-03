@@ -7,17 +7,26 @@
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
       </div>
 
-      <div class="modal-body">
-        <iframe src="https://www.youtube.com/embed/27NtA9LQI_I" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-      </div>
+      <div class="js-modal-content">
+       </div>
     </div>
   </div>
 </div>
-<script>
-  $( document ).ready(function() {
+
  
-    $('#videoModal').on('modal-body', function (e) {
-      $(this).find('iframe').attr('src', ''); 
-     });
+
+
+
+ <script>
+ $(document).ready(function(){
+  $(document).on('click', '.close' , function(){
+    $('.js-modal-content').html('');
   });
+
+  $(document).on('click', '.btn_video_modal' , function(){	
+	var ifra = $(this).find('span').attr('data-src');
+     $('.js-modal-content').html('<div class="responsive-video-popup"><iframe src="'+ifra+'autoplay=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>');
+      
+  });  
+});
 </script>
