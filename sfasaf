@@ -1,0 +1,263 @@
+<!-- /templates/product.liquid -->
+{%- assign first_3d_model = product.media | where: "media_type", "model" | first -%}
+
+<div itemscope itemtype="http://schema.org/Product" id="ProductSection--{{ section.id }}"
+  data-section-id="{{ section.id }}"
+  data-section-type="product-template"
+  data-image-zoom-type="{{ section.settings.enable_image_zoom }}"
+  data-enable-history-state="true"
+  data-stacked-layout="{% if section.settings.media_layout == "stacked" %}true{% else %}false{% endif %}"
+  {% if first_3d_model %}data-has-model="true"{% endif %}>
+
+    <meta itemprop="url" content="{{ shop.url }}{{ product.url }}">
+    <meta itemprop="image" content="{{ product.featured_media | img_url: 'grande' }}">
+
+    {% assign current_variant = product.selected_or_first_available_variant %}
+    {% assign featured_media = current_variant.featured_media | default: product.featured_media %}
+
+    {% assign stacked = false %}
+    {% if section.settings.media_layout == "stacked" %}{% assign stacked = true %}{% endif %}
+    {%- assign first_media = true -%}
+
+    <div class="grid product-single">
+      <div class="grid__item large--seven-twelfths medium--seven-twelfths text-center">
+        <div id="ProductMediaGroup-{{ section.id }}" class="product-single__media-group-wrapper" data-product-single-media-group-wrapper>
+          <div class="product-single__media-group{% unless stacked %} product-single__media-group--single-xr{% endunless %}" data-product-single-media-group>
+            {%- assign enable_image_zoom = section.settings.enable_image_zoom -%}
+            {% assign height = 850 %}
+            {% assign width = 575 %}
+            {%- assign first_3d_model = product.media | where: "media_type", "model" | first -%}
+            {% comment %}
+              Display product images
+            {% endcomment %}
+            {%- for media in product.media -%}
+              {%- assign featured = false -%}
+              {%- if media == featured_media -%}
+                {%- assign featured = true -%}
+              {%- endif -%}
+
+              {%- capture thumbnail_alt -%}
+                {%- if media.media_type == 'video' or media.media_type == 'external_video' -%}
+                  {{ 'products.product.video_thumbnail_alt' | t: imageAlt: media.alt | escape }}
+                {%- elsif media.media_type == 'model' -%}
+                  {{ 'products.product.model_thumbnail_alt' | t: imageAlt: media.alt | escape }}
+                {%- else -%}
+                  {{ 'products.product.gallery_thumbnail_alt' | t: imageAlt: media.alt | escape }}
+                {%- endif -%}
+              {%- endcapture -%}
+
+              <div class="product-single__media-flex-wrapper" data-slick-media-label="{{ thumbnail_alt }}" data-product-single-media-flex-wrapper>
+                <div class="product-single__media-flex">
+                  {%- include 'media' with media, enable_image_zoom: enable_image_zoom, stacked: stacked, featured: featured, width: width, height: height -%}
+
+                  {% comment %}
+                    Display a "View in your space" button (multi) for the first visible media and each individual model.
+                    Stacked layout only.
+                  {% endcomment %}
+                  {% if stacked %}
+                    {%- assign xr_id = false -%}
+                    {%- if first_media and first_3d_model -%}
+                      {%- assign xr_id = first_3d_model.id -%}
+                    {%- elsif media.media_type == 'model' -%}
+                      {%- assign xr_id = media.id -%}
+                    {%- endif -%}
+
+                    {%- if xr_id -%}
+                      {%- include 'xr-button' with model_id: xr_id, multi: true -%}
+                    {%- endif -%}
+                    {%- assign first_media = false -%}
+                  {% endif %}
+                </div>
+              </div>
+            {%- endfor -%}
+          </div>
+
+          {% comment %}
+            Display a "View in your space" button (single).
+            Stacked/Thumbnails layout (mobile)
+            Thumbnail layout only (desktop)
+          {% endcomment %}
+          {%- if first_3d_model -%}
+           {%- include 'xr-button' with model_id: first_3d_model.id, multi: false -%}
+          {%- endif -%}
+
+          {% unless stacked %}
+            <ul class="product-single__thumbnails small--hide grid-uniform" data-product-thumbnails>
+              {% for media in product.media %}
+                {% if product.media.size > 1 %}
+                  <li class="grid__item medium--one-third large--one-quarter product-single__media-wrapper">
+                    {%- capture thumbnail_alt -%}
+                      {%- if media.media_type == 'video' or media.media_type == 'external_video' -%}
+                        {{ 'products.product.video_thumbnail_alt' | t: imageAlt: media.alt | escape }}
+                      {%- elsif media.media_type == 'model' -%}
+                        {{ 'products.product.model_thumbnail_alt' | t: imageAlt: media.alt | escape }}
+                      {%- else -%}
+                        {{ 'products.product.gallery_thumbnail_alt' | t: imageAlt: media.alt | escape }}
+                      {%- endif -%}
+                    {%- endcapture -%}
+
+                    <a href="{{ media | img_url: 'grande' }}" class="product-single__thumbnail{% if media == featured_media %} active-thumb{% endif %}" data-media-id="{{ section.id }}-{{ media.id }}" data-product-thumbnail>
+                      <img class="product-single__thumb" src="{{ media | img_url: '150x' }}" alt="{{ thumbnail_alt }}">
+                      {%- if media.media_type == 'video' or media.media_type == 'external_video' or media.media_type == 'model' -%}
+                        <div class="product-single__thumbnail-badge">
+                          {% include 'svg-definitions' with media.media_type %}
+                        </div>
+                      {%- endif -%}
+                    </a>
+                  </li>
+                {% endif %}
+              {% endfor %}
+            </ul>
+          {% endunless %}
+          <div class="slick__controls slick-slider">
+            <button class="slick__arrow slick__arrow--previous" aria-label="{{ 'home_page.slideshow.previous_slide' | t }}" data-slick-previous>
+              <span class="icon icon-slide-prev" aria-hidden="true"></span>
+            </button>
+            <button class="slick__arrow slick__arrow--next" aria-label="{{ 'home_page.slideshow.next_slide' | t }}" data-slick-next>
+              <span class="icon icon-slide-next" aria-hidden="true"></span>
+            </button>
+            <div class="slick__dots-wrapper" data-slick-dots>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid__item product-single__meta--wrapper medium--five-twelfths large--five-twelfths">
+        <div class="product-single__meta">
+          {% if section.settings.product_vendor_enable %}
+            <h2 class="product-single__vendor" itemprop="brand">{{ product.vendor }}</h2>
+          {% endif %}
+
+          <h1 class="product-single__title" itemprop="name">{{ product.title }}</h1>
+
+          <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+            {% comment %}
+              Optionally show the 'compare at' or original price of the product.
+            {% endcomment %}
+            {% include 'product-price', variant: current_variant %}
+
+            {%- if shop.taxes_included or shop.shipping_policy.body != blank -%}
+              <div class="product-single__policies rte">
+                {%- if shop.taxes_included -%}
+                  {{ 'products.general.include_taxes' | t }}
+                {%- endif -%}
+                {%- if shop.shipping_policy.body != blank -%}
+                  {{ 'products.general.shipping_policy_html' | t: link: shop.shipping_policy.url }}
+                {%- endif -%}
+              </div>
+            {%- endif -%}
+
+            <hr class="hr--small">
+
+            <meta itemprop="priceCurrency" content="{{ cart.currency.iso_code }}">
+            <link itemprop="availability" href="http://schema.org/{% if product.available %}InStock{% else %}OutOfStock{% endif %}">
+
+            {% capture "form_classes" %}
+              product-single__form{% if product.has_only_default_variant %} product-single__form--no-variants{% endif %}
+            {%- endcapture %}
+
+            {% capture "form_id" %}AddToCartForm--{{ section.id }}{%- endcapture %}
+
+            {% form 'product', product, class:form_classes, id:form_id, data-product-form: '' %}
+              {% unless product.has_only_default_variant %}
+                {% for option in product.options_with_values %}
+                  <div class="radio-wrapper js product-form__item">
+                    <label class="single-option-radio__label"
+                      for="ProductSelect-option-{{ forloop.index0 }}">
+                      {{ option.name | escape }}
+                    </label>
+                    {% if section.settings.product_selector == 'radio' %}
+                      <fieldset class="single-option-radio"
+                        id="ProductSelect-option-{{ forloop.index0 }}">
+                        {% assign option_index = forloop.index %}
+                        {% for value in option.values %}
+                          {% assign variant_label_state = true %}
+                          {% if product.options.size == 1 %}
+                            {% unless product.variants[forloop.index0].available  %}
+                              {% assign variant_label_state = false %}
+                            {% endunless %}
+                          {% endif %}
+                          <input type="radio"
+                            {% if option.selected_value == value %} checked="checked"{% endif %}
+                            {% unless variant_label_state %} disabled="disabled"{% endunless %}
+                            value="{{ value | escape }}"
+                            data-index="option{{ option_index }}"
+                            name="option{{ option.position }}"
+                            class="single-option-selector__radio{% unless variant_label_state %} disabled{% endunless %}"
+                            id="ProductSelect-option-{{ option.name | handleize }}-{{ value | escape }}">
+                          <label for="ProductSelect-option-{{ option.name | handleize }}-{{ value | escape }}"{% unless variant_label_state %} class="disabled"{% endunless %}>{{ value | escape }}</label>
+                        {% endfor %}
+                      </fieldset>
+                    {% else %}
+                      <select class="single-option-selector__radio single-option-selector-{{ section.id }} product-form__input" id="SingleOptionSelector-{{ forloop.index0 }}" data-index="option{{ forloop.index }}">
+                        {% for value in option.values %}
+                          <option value="{{ value | escape }}"{% if option.selected_value == value %} selected="selected"{% endif %}>{{ value | escape }}</option>
+                        {% endfor %}
+                      </select>
+                    {% endif %}
+                  </div>
+                {% endfor %}
+              {% endunless %}
+
+              <select name="id" id="ProductSelect--{{ section.id }}" class="product-single__variants no-js">
+                {% for variant in product.variants %}
+                  {% if variant.available %}
+                    <option {% if variant == product.selected_or_first_available_variant %}
+                      selected="selected" {% endif %}
+                      data-sku="{{ variant.sku }}"
+                      value="{{ variant.id }}">
+                      {{ variant.title }} - {{ variant.price | money_with_currency }}
+                    </option>
+                  {% else %}
+                    <option disabled="disabled">
+                      {{ variant.title }} - {{ 'products.product.sold_out' | t }}
+                    </option>
+                  {% endif %}
+                {% endfor %}
+              </select>
+
+              {% if section.settings.quantity_enabled %}
+              <div class="product-single__quantity">
+                <label for="Quantity" class="product-single__quantity-label js-quantity-selector">{{ 'products.product.quantity' | t }}</label>
+                <input type="number" hidden="hidden" id="Quantity" name="quantity" value="1" min="1" class="js-quantity-selector">
+              </div>
+              {% endif %}
+
+              <div class="product-single__add-to-cart{% if section.settings.add_to_cart_button_size == 'large' %} product-single__add-to-cart--full-width{% endif %}">
+                <button type="submit" name="add" id="AddToCart--{{ section.id }}" class="btn btn--add-to-cart{% if section.settings.enable_payment_button and product.selling_plan_groups == empty %} btn--secondary-accent{% endif %}"{% unless current_variant.available %} disabled="disabled"{% endunless %}>
+                  <span class="btn__text">
+                    {% if current_variant.available %}
+                      {{ 'products.product.add_to_cart' | t }}
+                    {% else %}
+                      {{ 'products.product.sold_out' | t }}
+                    {% endif %}
+                  </span>
+                </button>
+                {% if section.settings.enable_payment_button %}
+                  {{ form | payment_button }}
+                {% endif %}
+              </div>
+            {% endform %}
+
+          </div>
+
+          <div class="product-single__description rte" itemprop="description">
+            {{ product.description }}
+          </div>
+
+          {% if section.settings.social_sharing_products %}
+            {% include 'social-sharing', share_title: product.title, share_permalink: product.url, share_image: product.featured_media %}
+          {% endif %}
+        </div>
+      </div>
+    </div>
+</div>
+{% unless product == empty %}
+  <script type="application/json" id="ProductJson-{{ section.id }}">
+    {{ product | json }}
+  </script>
+  <script type="application/json" id="ModelJson-{{ section.id }}">
+    {{ product.media | where: 'media_type', 'model' | json }}
+  </script>
+{% endunless %}
+
