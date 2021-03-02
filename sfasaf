@@ -100,15 +100,16 @@ We use this section to render both the quick shop and normal template so that we
           </ul>
           {% endif %}
           {% endcomment %}
-          <div class="variant_parent">
+       
+          
+            <div class="variant_parent">
               {% for option in product.options %}  
               {% if option == "Color" or option == "color" %}
               {% assign values = '' %}
-            
 
               {% for variant in product.variants %}
-              {% assign value = variant.options[0] %}
-              {% assign value = variant.options[0] %}
+              {% assign value = variant.options[1] %}
+              {% assign value = variant.options[1] %}
 
               {% unless values contains value %}
               {% assign values = values | join: ',' %}
@@ -133,6 +134,7 @@ We use this section to render both the quick shop and normal template so that we
               {% endif %}
               {% endfor %}
             </div>
+          
         </div>
 
         {% comment %}
