@@ -1,270 +1,371 @@
-<!doctype html>
-<html class="no-js" lang="{{ shop.locale }}">
-<head>
- <!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-KD4HN9Q');</script>
-	<meta name="facebook-domain-verification" content="c1l1fwym3g2p5cfdvh5sr38zgsv3to" />
-  <!-- End Google Tag Manager -->
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="theme-color" content="{{ settings.color_button }}">
+{%- capture _ -%}
+  {% comment %}
+    @param img
+      An Image Drop to display.
 
-  {%- if canonical_url != blank  -%}
-    <link rel="canonical" href="{{ canonical_url }}">
-  {%- endif -%}
+    @param lazy (optional)
+      Lazy-load the image. Outputs markup to connect with the rimg JS.
+      Defaults to false.
 
-  {%- if settings.favicon != blank -%}
-    <link rel="shortcut icon" href="{{ settings.favicon | img_url: '32x32' }}" type="image/png">
-  {%- endif -%}
+    @param background (optional)
+      Output the image markup as a background image.
+      Defaults to false.
 
-  {%- capture seo_title -%}
-    {%- if request.page_type == 'search' and search.performed == true -%}
-      {{ 'general.search.heading' | t: count: search.results_count }}: {{ 'general.search.results_with_count' | t: terms: search.terms, count: search.results_count }}
-    {%- else -%}
-      {{ page_title }}
-    {%- endif -%}
-    {%- if current_tags -%}
-      {%- assign meta_tags = current_tags | join: ', ' -%} &ndash; {{ 'general.meta.tags' | t: tags: meta_tags -}}
-    {%- endif -%}
-    {%- if current_page != 1 -%}
-      &ndash; {{ 'general.meta.page' | t: page: current_page }}
-    {%- endif -%}
-    {%- assign escaped_page_title = page_title | escape -%}
-    {%- unless escaped_page_title contains shop.name -%}
-      &ndash; {{ shop.name }}
-    {%- endunless -%}
-  {%- endcapture -%}
-  <title>{{ seo_title | strip }}</title>
+    @param size (optional)
+      The size to display the image at. Uses the same syntax as `img_url`.
+      Defaults to the image's native size.
 
-  {%- if page_description -%}
-    <meta name="description" content="{{ page_description | escape }}">
-  {%- endif -%}
+    @param crop (optional)
+      The crop type to use. One of: top, center, bottom, left, right.
+      Defaults to no cropping.
 
-  {% include 'social-meta-tags' %}
+    @param scale (optional)
+      A number to scale the image by.
+      Defaults to '1'.
 
-  {{ 'theme.scss.css' | asset_url | stylesheet_tag }}
-  {{ 'theme_add.scss.css' | asset_url | stylesheet_tag }}
-  {{ 'custom.scss.css' | asset_url | stylesheet_tag }}
-  {{ 'main.scss.css' | asset_url | stylesheet_tag }}
+    @param format (optional)
+      The format type to use. One of: jpg, pjpg.
+      Defaults to original image format.
 
-  <style>
-    @font-face {
-      font-family: "CircularStd";
-      src: url('{{ "CircularStd-Book.woff" | asset_url }}');
-      src: url('{{ "CircularStd-Book.woff" | asset_url }}') format("woff"),
-          url('{{ "CircularStd-Book.ttf" | asset_url }}') format("truetype");
-    }
+    @param placeholder (optional)
+      The size to display to placeholder image at. Uses the same syntax as
+      `img_url`. Only applies if `lazy` is true.
+      Defaults to no placeholder image.
 
-    @font-face {
-      font-family: "CheltenhamCondensed";
-      src: url('{{ "CheltenhamCondensed.woff" | asset_url }}');
-      src: url('{{ "CheltenhamCondensed.woff" | asset_url }}') format("woff"),
-          url('{{ "CheltenhamCondensed.ttf" | asset_url }}') format("truetype");
-    }
+    @param alt (optional)
+      Alt text for the image.
+      Defaults to the img's alt property or an empty string if none exists.
 
-    @font-face {
-      font-family: "CheltenhamBook";
-      src: url('{{ "CheltenhamBook.woff" | asset_url }}');
-      src: url('{{ "CheltenhamBook.woff" | asset_url }}') format("woff"),
-          url('{{ "CheltenhamBook.ttf" | asset_url }}') format("truetype");
-    }
+    @param class (optional)
+      CSS class names to add to the image tag's `class` attribute.
+      Defaults to blank.
 
-    @font-face {
-      font-family: "SpaceMono";
-      src: url('{{ "SpaceMono.woff" | asset_url }}');
-      src: url('{{ "SpaceMono.woff" | asset_url }}') format("woff"),
-          url('{{ "SpaceMono.ttf" | asset_url }}') format("truetype");
-    }
-  </style>
+    @param style (optional)
+      CSS styles to apply to the image tag's `style` attribute.
+      Defaults to blank.
 
-  <script>
-    var theme = {
-      breakpoints: {
-        medium: 750,
-        large: 990,
-        widescreen: 1400
-      },
-      strings: {
-        addToCart: {{ 'products.product.add_to_cart' | t | json }},
-        soldOut: {{ 'products.product.sold_out' | t | json }},
-        unavailable: {{ 'products.product.unavailable' | t | json }},
-        regularPrice: {{ 'products.product.regular_price' | t | json }},
-        salePrice: {{ 'products.product.sale_price' | t | json }},
-        sale: {{ 'products.product.on_sale' | t | json }},
-        fromLowestPrice: {{ 'products.product.from_lowest_price_html' | t: lowest_price: '[price]' | json }},
-        vendor: {{'products.product.vendor' | t | json }},
-        showMore: {{ 'general.filters.show_more' | t | json }},
-        showLess: {{ 'general.filters.show_less' | t | json }},
-        searchFor: {{ 'general.search.search_for' | t | json }},
-        addressError: {{ 'sections.map.address_error' | t | json }},
-        addressNoResults: {{ 'sections.map.address_no_results' | t | json }},
-        addressQueryLimit: {{ 'sections.map.address_query_limit_html' | t | json }},
-        authError: {{ 'sections.map.auth_error_html' | t | json }},
-        newWindow: {{ 'general.accessibility.link_messages.new_window' | t | json }},
-        external: {{ 'general.accessibility.link_messages.external' | t | json }},
-        newWindowExternal: {{ 'general.accessibility.link_messages.new_window_and_external' | t | json }},
-        removeLabel: {{ 'cart.label.remove' | t: product: '[product]' | json }},
-        update: {{ 'cart.label.update' | t | json }},
-        quantity: {{ 'cart.label.quantity' | t | json }},
-        discountedTotal: {{ 'cart.label.discounted_total' | t | json }},
-        regularTotal: {{ 'cart.label.regular_total' | t | json }},
-        priceColumn: {{ 'cart.label.price_column' | t | json }},
-        quantityMinimumMessage: {{ 'products.product.quantity_minimum_message' | t | json }},
-        cartError: {{ 'cart.general.cart_error' | t | json }},
-        removedItemMessage: {{ 'cart.general.removed_item_html' | t: quantity: '[quantity]', link: '[link]' | json }},
-        unitPrice: {{ 'products.product.unit_price_label' | t | json }},
-        unitPriceSeparator: {{ 'general.accessibility.unit_price_separator' | t | json }},
-        oneCartCount: {{ 'cart.popup.cart_count' | t: count: 1 | json }},
-        otherCartCount: {{ 'cart.popup.cart_count' | t: count: '[count]' | json }},
-        quantityLabel: {{ 'cart.popup.quantity_label' | t: quantity_count: '[count]' | json }},
-        products: {{ 'general.search.products' | t | json }},
-        loading: {{ 'general.search.loading' | t | json }},
-        number_of_results: {{ 'general.search.number_of_results' | t: result_number: '[result_number]', results_count: '[results_count]' | json }},
-        number_of_results_found: {{ 'general.search.number_of_results_found' | t: results_count: '[results_count]' | json }},
-        one_result_found: {{ 'general.search.one_result_found' | t | json }}
-      },
-      moneyFormat: {{ shop.money_format | json }},
-      moneyFormatWithCurrency: {{ shop.money_with_currency_format | json }},
-      settings: {
-        predictiveSearchEnabled: {{ settings.predictive_search_enabled | json }},
-        predictiveSearchShowPrice: {{ settings.predictive_search_show_price | json }},
-        predictiveSearchShowVendor: {{ settings.predictive_search_show_vendor | json }}
-      }
-    }
+    @param attr (optional)
+      Extra attributes to add to the image tag. For example: `id="example"`.
+      Defaults to blank.
 
-    document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
-  </script>
+    @param canvas (optional)
+      Add an extra element, useful for styling loaders.
+      Defaults to false.
 
-  {%- if request.page_type contains 'customers/' -%}
-    <script src="{{ 'shopify_common.js' | shopify_asset_url }}" defer="defer"></script>
-  {%- endif -%}
+    @param disable_noscript (optional)
+      Eliminates noscript tags, saving data in the cases when they aren't required.
+      Defaults to false.
+  {% endcomment %}
 
-  <script src="{{ 'lazysizes.js' | asset_url }}" async="async"></script>
-  <script src="{{ 'vendor.js' | asset_url }}" defer="defer"></script>
-  <script src="{{ 'theme.js' | asset_url }}" defer="defer"></script>
-  
-  <!-- Begin Pinterest Tag -->
-  <script>
-    !function(e){if(!window.pintrk){window.pintrk=function()
-    {window.pintrk.queue.push(Array.prototype.slice.call(arguments))};var
-    n=window.pintrk;n.queue=[],n.version="3.0";var
-    t=document.createElement("script");t.async=!0,t.src=e;var
-    r=document.getElementsByTagName("script")[0];r.parentNode.insertBefore(t,r)}}
-    ("https://s.pinimg.com/ct/core.js");
+  {% comment %}
+    Defaults
+  {% endcomment %}
+  {% assign lazy = lazy | default: false %}
+  {% assign background = background | default: false %}
+  {% assign size_default = img.width | append: 'x' | append: img.height %}
+  {% assign size = size | default: size_default %}
+  {% assign crop = crop | default: false %}
+  {% assign scale = scale | default: 1 %}
+  {% assign format = format | default: '' %}
+  {% assign placeholder = placeholder | default: false %}
+  {% assign alt = alt | default: img.alt | default: '' %}
+  {% assign class = class | default: blank %}
+  {% assign style = style | default: blank %}
+  {% assign attr = attr | default: blank %}
+  {% assign canvas = canvas | default: false %}
+  {% assign disable_noscript = disable_noscript | default: false %}
 
-    pintrk('load','2613807947639', { em: 'josh@wethewild.co', });
-    pintrk('page');
-  </script>
+  {% comment %}
+    Parse size parameter and force to numbers.
+  {% endcomment %}
+  {% assign rimg_s = size | split: 'x' %}
+  {% assign rimg_w = rimg_s[0] %}
+  {% assign rimg_h = rimg_s[1] %}
+  {% assign rimg_size_aspect_ratio = rimg_w | times: 1.0 | divided_by: rimg_h %}
 
-  <!-- Pinterest Events -->
-  <script>
-  /*addtocart event*/
-    function pinATC() {
-    if (document.querySelectorAll('.add_btn_price')) {
-    var ATCbutton = document.querySelectorAll('.add_btn_price');
-    for (var i = 0; i < ATCbutton.length; i++) {
-    ATCbutton[i].addEventListener('click', function () {
-    pintrk('track', 'addtocart',{
-    np: 'generator',
-    })})}}}
+  {% comment %}
+    Calculate width and height based on the size parameter.
+  {% endcomment %}
+  {% if rimg_w == blank and rimg_h == blank %}
+    {% assign rimg_w = img.width %}
+    {% assign rimg_h = img.height %}
 
-    document.readyState == 'complete' ? pinATC() :
-    window.addEventListener('load', pinATC);
-{% comment %}
-    /*pagevisit event*/ 
-    // (/wethewild.co/pages/products/.test(location.host + location.pathname) ==
-    // true) && pintrk('track', 'pagevisit',{
-    // np: 'generator',
-    // })
-    {% endcomment %}
-  </script>
-  <!-- End Pinterest Tag -->
+  {% comment %} Size to a specific height {% endcomment %}
+  {% elsif rimg_w == blank %}
+    {% assign rimg_w = rimg_h | times: img.aspect_ratio %}
+    {% if rimg_w > img.width %}
+      {% assign rimg_w = img.width %}
+      {% assign rimg_h = rimg_w | divided_by: img.aspect_ratio %}
+    {% endif %}
 
-{{ content_for_header }}
+  {% comment %} Size to a specific width {% endcomment %}
+  {% elsif rimg_h == blank %}
+    {% assign rimg_h = rimg_w | divided_by: img.aspect_ratio %}
+    {% if rimg_h > img.height %}
+      {% assign rimg_h = img.height %}
+      {% assign rimg_w = rimg_h | times: img.aspect_ratio %}
+    {% endif %}
 
+  {% comment %} Size to a width and height, no crop {% endcomment %}
+  {% elsif crop == blank %}
+    {% if img.aspect_ratio > rimg_size_aspect_ratio %}
+      {% assign rimg_h = rimg_w | divided_by: img.aspect_ratio %}
+      {% if rimg_h > img.height %}
+        {% assign rimg_h = img.height %}
+        {% assign rimg_w = rimg_h | times: img.aspect_ratio %}
+      {% endif %}
 
-</head>
+    {% else %}
+      {% assign rimg_w = rimg_h | times: img.aspect_ratio %}
+      {% if rimg_w > img.width %}
+        {% assign rimg_w = img.width %}
+        {% assign rimg_h = rimg_w | divided_by: img.aspect_ratio %}
+      {% endif %}
+    {% endif %}
 
-<body class="template-{{ request.page_type | handle }} {{ product.handle }}">
-  <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KD4HN9Q"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
-  <a class="in-page-link visually-hidden skip-link" href="#MainContent">{{ 'general.accessibility.skip_to_content' | t }}</a>
+  {% comment %} Otherwise we are sizing to a width and height, and cropping.
+  If requested size is larger than the image size then we should use the
+  largest possible size while maintaining the requested aspect ratio. {% endcomment %}
+  {% else %}
+    {% if img.aspect_ratio > rimg_size_aspect_ratio %}
+      {% comment %} fit height {% endcomment %}
+      {% assign rimg_h = rimg_w | divided_by: rimg_size_aspect_ratio %}
+      {% if rimg_h > img.height or rimg_w > img.width  %}
+        {% assign rimg_h = img.height %}
+        {% assign rimg_w = rimg_h | times: rimg_size_aspect_ratio %}
+      {% endif %}
 
-  {%- if settings.enable_ajax -%}
-    {% include 'cart-popup' %}
-  {%- endif -%}
+    {% else %}
+      {% comment %} fit width {% endcomment %}
+      {% assign rimg_w = rimg_h | times: rimg_size_aspect_ratio %}
+      {% if rimg_h > img.height or rimg_w > img.width %}
+        {% assign rimg_w = img.width %}
+        {% assign rimg_h = rimg_w | divided_by: rimg_size_aspect_ratio %}
+      {% endif %}
 
-  {% section 'header-banner' %}
-  {% section 'header' %}
- <div class="page-container drawer-page-content" id="PageContainer">
+    {% endif %}
 
-    <main class="main-content js-focus-hidden" id="MainContent" role="main" tabindex="-1">
-      {{ content_for_layout }}
-    </main>
+  {% endif %}
 
-    {% section 'footer' %}
+  {% assign rimg_w = rimg_w | ceil %}
+  {% assign rimg_h = rimg_h | ceil %}
 
-    <div id="slideshow-info" class="visually-hidden" aria-hidden="true">
-      {{- 'sections.slideshow.navigation_instructions' | t -}}
-    </div>
+  {% assign rimg_size = '' | append: rimg_w | append: 'x' | append: rimg_h %}
 
-  </div>
+  {% comment %}
+    Set the scale, default to 1.
+  {% endcomment %}
+  {% assign rimg_scale = scale %}
 
-  <ul hidden>
-    <li id="a11y-refresh-page-message">{{ 'general.accessibility.refresh_page' | t }}</li>
-    <li id="a11y-selection-message">{{ 'general.accessibility.selection_help' | t }}</li>
-  </ul>
+  {% comment %}
+    Set the format
+  {% endcomment %}
+  {% assign rimg_format = format %}
 
-  <script defer>
-    function scrollTo(hash) {
-      location.hash = "#" + hash;
-    }
+  {% comment %}
+    Try to guess the alt text based off the image if none is provided.
+  {% endcomment %}
+  {% assign rimg_alt = alt | escape %}
 
-    if (location.hash === "#contact_form") {
-      scrollTo("MainContent")
-    }
+  {% comment %}
+    Define a URL template. We use this to generate exact-size URLs in JS.
+  {% endcomment %}
+  {% assign rimg_url_template = img
+    | img_url: '1x1', crop: crop
+    | replace: '_1x1', '_{size}'
+  %}
 
-  </script>
-  
+  {% unless rimg_format == '' %}
+    {% assign rimg_url_template = img
+      | img_url: '1x1', crop: crop, format: rimg_format
+      | replace: '_1x1', '_{size}'
+    %}
+  {% endunless %}
 
+  {% comment %}
+    Define a placeholder SVG that shares the image's aspect ratio.
 
-  <div class="elfsight-sapp-095e27f4-762b-447d-ae77-785e5449abc1" style="display: flex; justify-content: center;"></div>
+    Setting the image's initial `srcset` attribute to this inline SVG allows the
+    image to have the correct aspect ratio before we actually load the image.
+  {% endcomment %}
+  {% assign rimg_placeholder = 'data:image/svg+xml;utf8,'
+    | append: "<svg xmlns='http://www.w3.org/2000/svg' width='X' height='Y'></svg>"
+    | replace: 'X', rimg_w
+    | replace: 'Y', rimg_h
+    | replace: ' ', '%20'
+  %}
 
-{% render 'spurit_ufp2_theme_snippet' %}
-   <script type='text/javascript' async src=''></script> 
-</body>
-</html>
+  {% comment %}
+    Generate a `srcset` string.
+  {% endcomment %}
+  {% assign rimg_density = '' %}
+  {% for i in (1..4) %}
+    {% assign rimg_densities_w = rimg_w | times: i | round %}
+    {% assign rimg_densities_h = rimg_h | times: i | round %}
 
+    {% assign rimg_density = rimg_density | append: ' ' %}
 
-<!-- Begin Shopify-Afterpay JavaScript Snippet (v1.0.10) -->
-<script type="text/javascript">
-  // Overrides:
-  // var afterpay_min = 0.04;            // As per your Afterpay contract.
-  // var afterpay_max = 2000.00;         // As per your Afterpay contract.
-  // var afterpay_cbt_enabled = false;   // As per your Afterpay contract; change to true to display Cross-Border Trade artwork (for AU/NZ).
-  var afterpay_logo_theme = 'black'; // Can be 'colour', 'black' or 'white'.
-  // var afterpay_product_selector = '#product-price-selector';
-  // var afterpay_cart_integration_enabled = true;
-  // var afterpay_cart_static_selector = '#cart-subtotal-selector';
-  
-  // Non-editable fields:
-  var afterpay_shop_currency = {{ shop.currency | json }};
-  var afterpay_cart_currency = {{ cart.currency.iso_code | json }};
-  var afterpay_shop_money_format = {{ shop.money_format | json }};
-  var afterpay_shop_permanent_domain = {{ shop.permanent_domain | json }};
-  var afterpay_theme_name = {{ theme.name | json }};
-  var afterpay_product = {{ product | json }};
-  var afterpay_current_variant = {{ product.selected_or_first_available_variant | json }};
-  var afterpay_cart_total_price = {{ cart.total_price | json }};
-  var afterpay_js_snippet_version = '1.0.10';
-  </script>
-  <script type="text/javascript" src="https://static.afterpay.com/shopify-afterpay-javascript.js"></script>
-  <!-- End Shopify-Afterpay JavaScript Snippet (v1.0.10) -->
-  
+    {% if rimg_densities_w > img.width or rimg_densities_h > img.height %}
+      {% if img.aspect_ratio > rimg_size_aspect_ratio %}
+        {% assign rimg_max_density = img.height | divided_by: rimg_h %}
+        {% assign rimg_max_density_float = img.height | times: 100 | divided_by: rimg_h | times: 0.01 %}
+      {% else %}
+        {% assign rimg_max_density = img.width | divided_by: rimg_w %}
+        {% assign rimg_max_density_float = img.width | times: 100 | divided_by: rimg_w | times: 0.01 %}
+      {% endif %}
+
+      {% if rimg_max_density != rimg_max_density_float %}
+        {% assign rimg_max_density = rimg_max_density_float %}
+      {% endif %}
+
+      {% unless rimg_density contains rimg_max_density %}
+        {% assign rimg_density = rimg_density | append: rimg_max_density %}
+      {% endunless %}
+      {% break %}
+    {% else %}
+      {% assign rimg_density = rimg_density | append: i %}
+    {% endif %}
+  {% endfor %}
+
+  {% assign rimg_densities = rimg_density | split: ' ' %}
+  {% assign rimg_density_srcset = '' %}
+  {% for rimg_densities_i in rimg_densities %}
+    {% assign rimg_densities_w = rimg_w | times: rimg_densities_i | round %}
+    {% assign rimg_densities_h = rimg_h | times: rimg_densities_i | round %}
+
+    {% assign rimg_densities_size = rimg_densities_w | append: 'x' | append: rimg_densities_h %}
+    {% assign rimg_density_src = img | img_url: rimg_densities_size, crop: crop %}
+
+    {% unless rimg_format == '' %}
+      {% assign rimg_density_src = img | img_url: rimg_densities_size, crop: crop, format: rimg_format %}
+    {% endunless %}
+
+    {% assign rimg_density_srcset = rimg_density_srcset
+      | append: ', '
+      | append: rimg_density_src
+      | append: ' '
+      | append: rimg_densities_i
+      | append: 'x'
+    %}
+  {% endfor %}
+  {% assign rimg_density_srcset = rimg_density_srcset | remove_first: ', ' %}
+
+{%- endcapture -%}
+
+{% comment %} Background image {% endcomment %}
+{% if background %}
+  {% if lazy %}
+    data-rimg="lazy"
+    data-rimg-scale="{{ rimg_scale }}"
+    data-rimg-template="{{ rimg_url_template }}"
+    data-rimg-max="{{ img.width }}x{{ img.height }}"
+    data-rimg-crop="{{ crop }}"
+    {% if placeholder %}data-rimg-placeholder="{{ placeholder }}"{% endif %}
+    {% if class != blank %}class="{{ class }}"{% endif %}
+    {% if style != blank %}style="{{ style }}"{% endif %}
+    {% if attr != blank %}{{ attr }}{% endif %}
+
+  {% else %}
+    {% if class != blank %}class="{{ class }}"{% endif %}
+    style="
+      {% if rimg_format == '' %}
+        background-image: url('{{ img | img_url: rimg_size, crop: crop }}');
+      {% else %}
+        background-image: url('{{ img | img_url: rimg_size, format: rimg_format }}');
+      {% endif %}
+
+      {% if style != blank %}{{ style }}{% endif %}
+    "
+    {% if attr != blank %}{{ attr }}{% endif %}
+
+  {% endif %}
+
+{% comment %} Image tag {% endcomment %}
+{% else %}
+  {% if lazy and disable_noscript != true %}
+    <noscript data-rimg-noscript>
+      <img
+        {% if rimg_format == '' %}
+          src="{{ img | img_url: rimg_size, crop: crop }}"
+        {% else %}
+          src="{{ img | img_url: rimg_size, crop: crop, format: rimg_format }}"
+        {% endif %}
+
+        alt="{{ rimg_alt }}"
+        data-rimg="noscript"
+        srcset="{{ rimg_density_srcset }}"
+        {% if class != blank %}class="{{ class }}"{% endif %}
+        {% if style != blank %}style="{{ style }}"{% endif %}
+        {% if attr != blank %}{{ attr }}{% endif %}
+      >
+    </noscript>
+  {% endif %}
+
+  <img
+    {% if rimg_format == '' %}
+      src="{{ img | img_url: rimg_size, crop: crop }}"
+    {% else %}
+      src="{{ img | img_url: rimg_size, crop: crop, format: rimg_format }}"
+    {% endif %}
+    alt="{{ rimg_alt }}"
+
+    {% if lazy %}
+      data-rimg="lazy"
+      data-rimg-scale="{{ rimg_scale }}"
+      data-rimg-template="{{ rimg_url_template }}"
+      data-rimg-max="{{ img.width }}x{{ img.height }}"
+      data-rimg-crop="{{ crop }}"
+      {% if placeholder %}data-rimg-placeholder="{{ placeholder }}"{% endif %}
+      srcset="{{ rimg_placeholder }}"
+    {% else %}
+      data-rimg
+      srcset="{{ rimg_density_srcset }}"
+    {% endif %}
+
+    {% if class != blank %}class="{{ class }}"{% endif %}
+    {% if style != blank %}style="{{ style }}"{% endif %}
+    {% if attr != blank %}{{ attr }}{% endif %}
+  >
+{% endif %}
+
+{% if canvas %}
+  <div data-rimg-canvas></div>
+{% endif %}
+
+{%- capture _ -%}
+  {% comment %}
+    Unset all parameters so they don't leak between snippet calls.
+  {% endcomment %}
+  {% assign lazy = nil %}
+  {% assign background = nil %}
+  {% assign size = nil %}
+  {% assign crop = nil %}
+  {% assign scale = nil %}
+  {% assign format = nil %}
+  {% assign placeholder = nil %}
+  {% assign alt = nil %}
+  {% assign class = nil %}
+  {% assign style = nil %}
+  {% assign attr = nil %}
+  {% assign canvas = nil %}
+  {% assign disable_noscript = nil %}
+  {% comment %}
+    Unset all local variables so they don't pollute the global scope.
+  {% endcomment %}
+  {% assign rimg_s = blank %}
+  {% assign rimg_w = blank %}
+  {% assign rimg_h = blank %}
+  {% assign rimg_size_aspect_ratio = blank %}
+  {% assign rimg_scale = blank %}
+  {% assign rimg_url_template = blank %}
+  {% assign rimg_alt = blank %}
+  {% assign rimg_density = blank %}
+  {% assign rimg_densities = blank %}
+  {% assign rimg_densities_i = blank %}
+  {% assign rimg_densities_w = blank %}
+  {% assign rimg_densities_h = blank %}
+  {% assign rimg_density_src = blank %}
+  {% assign rimg_densities_size = blank %}
+  {% assign rimg_density_srcset = blank %}
+  {% assign rimg_placeholder = blank %}
+{%- endcapture -%}
