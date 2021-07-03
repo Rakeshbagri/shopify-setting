@@ -185,11 +185,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   </script>
   <!-- End Pinterest Tag -->
 
-  {{ content_for_header }}
+{{ content_for_header }}
+
 
 </head>
 
-<body class="template-{{ request.page_type | handle }}">
+<body class="template-{{ request.page_type | handle }} {{ product.handle }}">
   <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KD4HN9Q"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -202,8 +203,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   {% section 'header-banner' %}
   {% section 'header' %}
-  
-  <div class="page-container drawer-page-content" id="PageContainer">
+ <div class="page-container drawer-page-content" id="PageContainer">
 
     <main class="main-content js-focus-hidden" id="MainContent" role="main" tabindex="-1">
       {{ content_for_layout }}
@@ -238,9 +238,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="elfsight-sapp-095e27f4-762b-447d-ae77-785e5449abc1" style="display: flex; justify-content: center;"></div>
 
 {% render 'spurit_ufp2_theme_snippet' %}
-  
-   <script type='text/javascript' async src=''></script>
-  
+   <script type='text/javascript' async src=''></script> 
 </body>
 </html>
 
