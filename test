@@ -286,14 +286,14 @@
     <noscript data-rimg-noscript>
       <img
         {% if rimg_format == '' %}
-          src="{{ img | img_url: rimg_size, crop: crop }}"
+          class='lazyload' data-src="{{ img | img_url: rimg_size, crop: crop }}"
         {% else %}
-          src="{{ img | img_url: rimg_size, crop: crop, format: rimg_format }}"
+          class='lazyload' data-src="{{ img | img_url: rimg_size, crop: crop, format: rimg_format }}"
         {% endif %}
 
         alt="{{ rimg_alt }}"
         data-rimg="noscript"
-        srcset="{{ rimg_density_srcset }}"
+        data-srcset="{{ rimg_density_srcset }}"
         {% if class != blank %}class="{{ class }}"{% endif %}
         {% if style != blank %}style="{{ style }}"{% endif %}
         {% if attr != blank %}{{ attr }}{% endif %}
@@ -303,9 +303,9 @@
 
   <img
     {% if rimg_format == '' %}
-      src="{{ img | img_url: rimg_size, crop: crop }}"
+      class='lazyload' data-src="{{ img | img_url: rimg_size, crop: crop }}"
     {% else %}
-      src="{{ img | img_url: rimg_size, crop: crop, format: rimg_format }}"
+      class='lazyload' data-src="{{ img | img_url: rimg_size, crop: crop, format: rimg_format }}"
     {% endif %}
     alt="{{ rimg_alt }}"
 
