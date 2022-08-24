@@ -1,0 +1,215 @@
+
+
+<link rel="stylesheet" href="{{ 'section-steps.css' | asset_url }}">
+
+
+  <div class="container">
+
+<div class="product-steps product-sections" id="product-steps">
+<div class="page-width">
+
+<div class="product-steps__container">
+<div class="product-steps__images">
+
+
+{% for block in section.blocks %}
+{%- if block.settings.image != blank -%}
+<div class="product-steps__image" >
+<div class="product-steps__image-container">
+<img src="{{ block.settings.image | img_url: '600x' }}" class="img-fill">
+</div>
+</div>
+{%- endif -%}
+{% endfor %} 
+
+
+</div>
+
+<div class="product-steps__steps">
+
+<div class="product-steps__step-container">
+
+{% for block in section.blocks %}  
+<button class="product-steps__step product-steps__step--default">
+<div class="product-steps__step-number">
+<h3 class="heading" style="color: #717C8F">{{ forloop.index }}</h3>
+</div>
+<p class="detail-3"> {{  block.settings.sub_title  | split: ':' | last }}  </p>
+</button>
+{% endfor %} 
+
+
+</div> 
+
+
+
+
+<div class="product-steps__info-container">
+
+
+{% for block in section.blocks %}  
+
+<div class="product-steps__info-item">
+
+{%- if block.settings.sub_title != blank -%}
+<div class="product-steps__step-subtitle label heading"> {{  block.settings.sub_title }}</div>
+{%- endif -%}
+{%- if block.settings.title != blank -%}
+<h3 class="product-steps__step-title heading h3">{{  block.settings.title }}</h3>
+{%- endif -%}
+<div class="product-steps__info-pill">
+{%- if block.settings.time != blank -%}
+<p class="label bold">{{ block.settings.time }}</p>
+{%- endif -%}
+
+<div class="label bold pos-right">
+
+  <div class="b-1">
+{%- if block.settings.icon-1 != blank -%}
+<img src="{{ block.settings.icon-1 | img_url: '30x' }}">
+{%- endif -%}
+
+{%- if block.settings.text-1 != blank -%}
+ {{ block.settings.text-1 }}
+{%- endif -%}
+  </div>
+  
+
+  <div class="b-1">
+  {%- if block.settings.icon-2 != blank -%}
+<img src="{{ block.settings.icon-2 | img_url: '30x' }}">
+{%- endif -%}
+
+{%- if block.settings.text-2 != blank -%}
+ {{ block.settings.text-2 }}
+{%- endif -%}
+  </div>
+
+  
+</div>
+
+
+</div>
+{%- if block.settings.text != blank -%}
+
+<div class="product-steps__step-text body-2"> {{ block.settings.text }}</div>
+{%- endif -%}
+</div>
+{% endfor %} 
+
+</div>
+</div>
+
+</div>
+</div>
+</div>
+
+  </div>
+
+  
+<style>
+.product-section,
+.product__media-container,
+.product__media-wrapper::after,
+.product__slider-thumbnail-item.active,
+.product-ingredients__item-image,
+.product-nav-bar__links a.active::after,
+.product__media-list .slick-list {
+border-color: #4e5b73;
+}
+
+
+  #shopify-section-{{ section.id }} { background: {{ section.settings.bg }};  }
+</style>
+
+
+
+{% schema %}
+{
+"name": "Steps",
+"settings": [
+
+{
+"type": "color",
+"id": "bg",
+"label": "Background",
+"default": "#fff"
+}
+],
+"blocks": [{
+"type": "logo",
+"name": {
+
+"en": "Steps"
+},
+"settings": [
+{
+"type": "image_picker",
+"id": "image",
+"label": "Large Image"
+},
+
+{
+"type": "text",
+"id": "sub_title",
+"label": "Sub Title"
+},
+{
+"type": "text",
+"id": "title",
+"label": "Title"
+},
+{
+"type": "richtext",
+"id": "text",
+"label": "Content"
+},
+
+{
+"type": "text",
+"id": "time",
+"label": "Use time",
+"info": "2X Daily."
+},
+{
+"type": "header",
+"content": "Day Timing"
+},
+{
+"type": "image_picker",
+"id": "icon-1",
+"label": "Icon"
+},
+
+{
+"type": "text",
+"id": "text-1",
+"label": "Text"
+},
+{
+"type": "image_picker",
+"id": "icon-2",
+"label": "Icon"
+},
+
+{
+"type": "text",
+"id": "text-2",
+"label": "Text"
+}
+
+]
+}],
+"presets": [{
+"name": "Steps",
+"category": "Custom"
+}]
+
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
