@@ -1,4 +1,70 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
+
+<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+
+<script>
+
+
+$('.product-steps__images').slick({
+  initialSlide: window.defaultStep,
+  arrows: false,
+  fade: true,
+  swipe: false,
+  draggable: false,
+  asNavFor: '.product-steps__step-container, .product-steps__info-container',
+  responsive: [
+    {
+      breakpoint: 768,
+      settings: {
+        swipe: true,
+        draggable: true,
+      }
+    }
+  ]
+});
+
+$('.product-steps__step-container').slick({
+  initialSlide: window.defaultStep,
+  arrows: false,
+  focusOnSelect: true,
+  slidesToShow: 6,
+  slidesToScroll: 6,
+  asNavFor: '.product-steps__info-container, .product-steps__images',
+  responsive: [
+    {
+      breakpoint: 768,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        variableWidth: true,
+        infinite: true
+      }
+    }
+  ]
+});
+
+$('.product-steps__info-container').slick({
+  initialSlide: window.defaultStep,
+  arrows: false,
+  swipe: false,
+  draggable: false,
+  asNavFor: '.product-steps__images, .product-steps__step-container',
+  responsive: [
+    {
+      breakpoint: 768,
+      settings: {
+        swipe: true,
+        draggable: true,
+      }
+    }
+  ]
+});
+
+</script>
 
 <link rel="stylesheet" href="{{ 'section-steps.css' | asset_url }}">
 
