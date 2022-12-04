@@ -1,0 +1,654 @@
+<!doctype html>
+<!--[if IE 8]><html lang="en" class="ie8 js"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--><html lang="en" class="js{% if template == 'index' %} templateIndex{% endif %}"> <!--<![endif]-->
+<head>
+  
+  <!-- Google Tag Manager -->
+
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+
+})(window,document,'script','dataLayer','GTM-TDLB95S');</script>
+
+<!-- End Google Tag Manager -->
+ 
+<meta name="p:domain_verify" content="f58913a0b40c0b6ed95870043eebda12"/> 
+  
+
+   		{% include 'booster-seo' %}
+   
+   {% comment %}{% include 'limespot' %}{% endcomment %}
+ 
+  <meta name="google-site-verification" content="googleeba4c639ad7a7a92.html"/>
+  <meta name="google-site-verification" content="_NIoFqg9sWiMNe3cGVqjEVdqqkP3ewCQOUP-YpwrvnM" />
+  <meta name="google-site-verification" content="bxUCWnLeu9QWwzULpStcO9yGE6np0Frm_PsN2sRmwrw" />
+   <meta name="msvalidate.01" content="A5C9BE79C83ADF45EEACCAEC8203B8C6" />
+  <meta name="msvalidate.01" content="120EC583C3A0FC421229D4F7BA52B35C" />
+  {% if settings.favicon != empty %}
+  <link rel="shortcut icon" href="{{ 'favicon.png' | asset_url }}" type="image/png" />
+  {% endif %}
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
+  <link rel="canonical" href="{{ canonical_url }}" />
+ 
+
+
+  <!-- Title and description ================================================== -->
+  {% comment %}<title>
+   hello my name is tom {{ page_title }}{% if current_tags %}{% assign meta_tags = current_tags | join: ', ' %} &ndash; {{ 'general.meta.tags' | t: tags: meta_tags }}{% endif %}{% if current_page != 1 %} &ndash; {{ 'general.meta.page' | t: page: current_page }}{% endif %}{% unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless %}
+  </title>{% endcomment %}
+
+  {% include 'font-families' %}
+
+  <link rel="preload" as="image" href="https://cdn.shopify.com/s/files/1/1557/9661/t/18/assets/logo.png?v=13003344988111923830">
+  
+  <link rel="preload" href="{{ 'newcss.css' | asset_url }}" as="style" onload="this.rel='stylesheet'">
+  
+  <link rel="preload" href="{{ 'bc.style.scss.css' | asset_url }}" as="style" onload="this.rel='stylesheet'">
+ 
+  
+  {% if page_description %}
+  {% comment %}<meta name="description" content="{{ page_description | escape }}">{% endcomment %}
+  {% endif %}
+  
+  {% include 'fb-open-graph' %}
+  {% include 'header-css-file' %}
+  {% include 'header-font' %}
+  {% include 'header-js-file' %}
+
+  {% capture MyJsFunc %}load', function(){}{% endcapture %} {% capture MyJsFunc2%}document.addEventListener('StartAsyncLoading',function(event){asyncLoad();});if(window.attachEvent){%endcapture %} {% if template contains "index" or template contains "product" or template contains "collection" or page.url contains "pages" or blog.url contains "blogs" %} {{ content_for_header | replace: "load', asyncLoad",MyJsFunc | replace: 'if(window.attachEvent)', MyJsFunc2 | replace: 'src="//cdn.shopify.com/shopifycloud/', 'data-src="//cdn.shopify.com/shopifycloud/' | replace: 'DOMContentLoaded', 'StartPreviewBarLoading' | replace: '"https:\/\/shopifycdn-aaawebstore.s3.amazonaws.com\/announcement\/topbar-script_v5.js?shop=modern-furniture-group.myshopify.com",', '' | replace: '"https:\/\/assets1.adroll.com\/shopify\/latest\/j\/shopify_rolling_bootstrap_v2.js?adroll_adv_id=BLFBNE2USJA6HN2OEIQZH4\u0026adroll_pix_id=PQYVDKJBZFDWNMY72AYUIL\u0026shop=modern-furniture-group.myshopify.com",', ''}} {% else %} {{ content_for_header }} {% endif %}
+  
+  <!-- OrderLogic checkout restrictions ========================================= -->
+  {% include 'order-logic' %}
+
+{% comment %} BOLD-PRODUCT LIGHT VERSION {% endcomment %}
+{% include 'bold-product' with product, hide_action: 'header' %}
+
+
+  {% comment %}{% include 'bold-common' %}{% endcomment %}
+
+
+  
+  {% comment %}{{ 'shopstorm-apps.scss.css' | asset_url | stylesheet_tag }}{% endcomment %}
+  {% comment %}{{ 'custom_cits.css' | asset_url | stylesheet_tag }}{% endcomment %}
+  {% include 'css-custom-cits' %}
+  
+  {{ 'newcss.css' | asset_url | stylesheet_tag }}
+  
+  <script type="text/javascript" async="" data-src="https://shopifycdn-aaawebstore.s3.amazonaws.com/announcement/topbar-script_v5.js?shop=modern-furniture-group.myshopify.com"></script>
+  
+  <script type="text/javascript" async="" data-src="https://assets1.adroll.com/shopify/latest/j/shopify_rolling_bootstrap_v2.js?adroll_adv_id=BLFBNE2USJA6HN2OEIQZH4&adroll_pix_id=PQYVDKJBZFDWNMY72AYUIL&shop=modern-furniture-group.myshopify.com"></script>
+
+  
+ <script data-src="//staticxx.s3.amazonaws.com/aio_stats_lib_v1.min.js?v=1.0"></script>
+  <script type='text/javascript'>var jiltStorefrontParams = {{ shop.metafields.jilt_storefront | json }}; {% if customer %}jiltStorefrontParams.customerID = {{ customer.id }};{% endif %}</script>
+ <script data-src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script>
+
+  <!-- New Microsoft UET TAG - Datastep -->
+  <script>(function(w,d,t,r,u){var f,n,i;w[u]=w[u]||[],f=function(){var o={ti:"56369384"};o.q=w[u],w[u]=new UET(o),w[u].push("pageLoad")},n=d.createElement(t),n.src=r,n.async=1,n.onload=n.onreadystatechange=function(){var s=this.readyState;s&&s!=="loaded"&&s!=="complete"||(f(),n.onload=n.onreadystatechange=null)},i=d.getElementsByTagName(t)[0],i.parentNode.insertBefore(n,i)})(window,document,"script","//bat.bing.com/bat.js","uetq");</script>
+  <!-- End New Microsoft UET TAG - Datastep -->
+  
+  <!-- Pinterest Tag -->
+<script>
+function load_pinterest()
+  {
+!function(e){if(!window.pintrk){window.pintrk = function () {
+window.pintrk.queue.push(Array.prototype.slice.call(arguments))};var
+  n=window.pintrk;n.queue=[],n.version="3.0";var
+  t=document.createElement("script");t.async=!0,t.src=e;var
+  r=document.getElementsByTagName("script")[0];
+  r.parentNode.insertBefore(t,r)}}("https://s.pinimg.com/ct/core.js");
+pintrk('load', '2612523271427' );
+pintrk('page');
+  }
+</script>
+<noscript>
+<img height="1" width="1" style="display:none;" alt=""
+  src="https://ct.pinterest.com/v3/?event=init&tid=2612523271427&noscript=1" />
+</noscript>
+<!-- end Pinterest Tag -->
+
+
+<meta name="google-site-verification" content="sGg1XQ80pk5UmcgKc1LTK7ZRrjGoK3nZKs55Xwu_dTM" />
+{% render 'aaa-announcementbar-configuration' %} 
+  <!-- MAILCHIMP INTEGRATION SCRIPTS -->
+   <script id="mcjs">!function(c,h,i,m,p){m=c.createElement(h),p=c.getElementsByTagName(h)[0],m.async=1,m.src=i,p.parentNode.insertBefore(m,p)}(document,"script","https://chimpstatic.com/mcjs-connected/js/users/2035e5e55b1bf0b15380a22ad/ed82af8d53d539e3fb2bd82f3.js");</script>
+{%  include 'buddha-megamenu'  %}
+{{ '//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css' | stylesheet_tag }}
+<!-- GSSTART Slider code start. Do not change -->{% if product.id > 1 %}
+<script type="text/javascript" src="https://gravity-software.com/js/shopify/slider_shopmodernfura20831.js?v=9e9e70de12ece7b6f7f348401219d2b9"></script> <link rel="stylesheet" href="https://gravity-software.com/js/shopify/rondell/jquery.rondellf20831.css?v=9e9e70de12ece7b6f7f348401219d2b9"/> 
+ {% if product.variants.size > 1 %}<script>
+gsSliderDefaultV = "{{ product.selected_or_first_available_variant.id }}";
+var variantImagesByVarianName = {};
+var variantImagesByVarianNameMix = {};
+ var variantImagesGS = {},
+    thumbnails,
+    variant,
+    variantImage,
+    optionValue,
+    cntImages;
+    productOptions = [];
+    cntImages = 0;
+    {% for variant in product.variants %}
+       variant = {{ variant | json }};
+       if ( typeof variant.featured_image !== 'undefined' && variant.featured_image !== null ) {
+         variantImage =  variant.featured_image.src.split('?')[0].replace(/http(s)?:/,'');
+         variantImagesGS[variant.id] = variantImage;
+         variantImagesByVarianName[variant.option1] = variantImage;
+var variantMixName = "";
+if(variant.option1 != null) {
+variantMixName = variant.option1;
+}
+	 if(variant.option2 != null) {
+		variantImagesByVarianName[variant.option2] = variantImage;
+		variantMixName = variantMixName + ";gs;" + variant.option2;
+	 }
+         if(variant.option3 != null) {
+                variantImagesByVarianName[variant.option3] = variantImage;
+		variantMixName = variantMixName + ";gs;" + variant.option3;
+         }
+
+if(variantMixName != "") {
+variantImagesByVarianNameMix[variantMixName] = variantImage;
+}
+
+         cntImages++;
+       }
+    {% endfor %}
+                if(cntImages == 0) {
+          variantImagesGS = undefined;
+                }
+</script> {% endif %}
+<script>
+
+var imageDimensionsWidth = {};
+var imageDimensionsHeight = {};
+var imageSrcAttr = {};
+var altTag = {};  
+
+var mediaGS = [];  
+  var productImagesGS = [];
+var productImagesGSUrls = [];
+{% for image in product.images %}
+  var productImageUrl = "{{ image.src }}";
+  var dotPosition = productImageUrl.lastIndexOf(".");
+  productImageUrl = productImageUrl.substr(0, dotPosition);
+  productImagesGS.push(productImageUrl);
+  imageDimensionsWidth[{{ image.id }}] = "{{ image.width }}";
+  imageDimensionsHeight[{{ image.id }}] = "{{ image.height }}";
+  altTag[{{ image.id }}] = "{{ image.alt | replace: '\"', '"' | replace: '"', '\"' | strip | strip_newlines }}";
+  imageSrcAttr[{{ image.id }}] = "{{ image.src }}";
+  productImagesGSUrls.push("{{ image.src | img_url: '240x' }}");
+{% endfor %}
+
+{%- for media in product.media -%}
+    {% case media.media_type %}
+	{% when "image" %}                           
+                           var mediaObjectGS ={id: "{{ media.image.id  }}", mediaType:"{{ media.media_type }}", previewImgURL:"{{ media.image.src | img_url: "240x" }}", previewImg:"{{ media.image.src }}", tag:"{{ media.image.src | img_url: "240x" }}"};  
+            mediaGS.push(mediaObjectGS);
+    {% when "video" %}
+              var productImageUrl = "{{ media.preview_image }}";
+  var dotPosition = productImageUrl.lastIndexOf(".");
+  productImageUrl = productImageUrl.substr(0, dotPosition);                     
+  var mediaObjectGS ={id: "{{ media.id }}", mediaType:"{{ media.media_type }}", width: "{{ media.preview_image.width }}", height: "{{ media.preview_image.height }}", previewImgURL:"{{ media.preview_image | img_url: "500x" }}", previewImg:"" + productImageUrl +  "", tag:'{{ media | video_tag: controls: true }}'};                                  
+            mediaGS.push(mediaObjectGS);                                
+	{% when "external_video" %}                
+              var productImageUrl = "{{ media.preview_image }}";
+  var dotPosition = productImageUrl.lastIndexOf(".");
+  productImageUrl = productImageUrl.substr(0, dotPosition);                     
+            var mediaObjectGS ={id: "{{ media.id }}", mediaType:"{{ media.media_type }}", width: "{{ media.preview_image.width }}", height: "{{ media.preview_image.height }}", previewImgURL:"{{ media.preview_image | img_url: "500x" }}", previewImg:"" + productImageUrl +  "", tag:'{{ media | external_video_tag }}'};                                  
+            mediaGS.push(mediaObjectGS);
+    {% endcase %}
+{%- endfor -%}      
+                    
+
+</script>
+
+{% endif %}<!-- Slider code end. Do not change GSEND --></head>
+<body class="{% if customer %}customer-logged-in {% endif %}template{{ template | split: '.' | first | camelize }}">
+  
+  <!-- Google Tag Manager (noscript) -->
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDLB95S"
+
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+<!-- End Google Tag Manager (noscript) -->
+<script async type="text/javascript" data-src="https://stats.tools/js/data.js"></script>
+  
+  
+  {% if settings.enable_review_panel %}
+  {% include 'panel-tool' %}
+  {% endif %}
+  
+  <div class="boxes-wrapper">
+    
+    {% include 'navigation-mobile' %}
+    
+    <div id="page-body"{% if settings.general_placement == 'boxes' %} class="boxes"{% endif %}>
+
+      
+      <!-- Begin Header -->
+      
+      <header class="header-content{% if settings.header_placement == 'boxes' %} boxes{% endif %}" data-stick="{{ settings.enable_sticky }}">
+        {% include 'header-content' %}
+      </header>
+      
+      <!-- End Header -->
+      
+
+      <div id="body-content">
+        {% unless template == 'index' or template contains 'product' or template == 'page.contact' or template == 'page.about-us' %}
+        <div class="container">
+          {% endunless %}
+
+          <!-- Begin Breadcrumb-->
+
+          {% unless template == 'index' or template == 'page.contact' or template == 'page.about-us' or longtailux_iserp_name %}
+          {% include 'breadcrumb' %}
+          {% endunless %}
+
+          <!-- End Breadcrumb-->
+
+
+          <!-- Begin Slideshow -->
+
+          {% if template == 'index' %}
+          {% include 'home-slideshow' %}
+          {% endif %}
+
+          <!-- End Slideshow -->
+
+
+          <!-- Begin Main Content -->
+
+          <div id="main-content">
+
+            <div class="main-content">
+              {% if template == 'list-collections' %}
+              {% include 'collections' %}
+              {% else %}
+              {{ content_for_layout }}
+<limespot></limespot>
+              {% endif %}          
+            </div>
+
+          </div>
+
+          <!-- End Main Content -->
+
+          {% unless template == 'index' or template contains 'product' or template == 'page.contact' or template == 'page.about-us' %}
+        </div>
+        {% endunless %}
+      </div>
+      
+       {% comment %} Start: Render Longtail UX links from metafields {% endcomment %}
+      {% if product.metafields.longtailux.links %}
+        {% assign longtailux_links_outer = product.metafields.longtailux.links %}
+      {% elsif collection.metafields.longtailux.links %}
+        {% assign longtailux_links_outer = collection.metafields.longtailux.links %}
+      {% elsif template == 'index' and shop.metafields.longtailux.links %}
+        {% comment %} homepage {% endcomment %}
+        {% assign longtailux_links_outer = shop.metafields.longtailux.links %}
+      {% endif %}
+      {% for longtailux_links_inner in longtailux_links_outer.data[0] %}
+        {% comment %} grab links for the first url {% endcomment %}
+        {% assign longtailux_links = longtailux_links_inner | last %}
+        {% break %}
+      {% endfor %}
+      {% if longtailux_links.size > 0 %}
+      <style>
+
+        .lux-popular-searches ul {
+          padding-left: 0;
+        }
+        .lux-popular-searches ul li {
+          display: inline-block;
+          padding: 10px;
+          background-color: #fff;
+          margin: 5px;
+        }
+
+      </style>
+      <div class="grid-uniform lux-popular-searches text-center">
+        <h4>Popular Searches</h4>
+        <ul>
+        {% for longtailux_link in longtailux_links %}
+          <li><a href="{{ longtailux_link['url'] }}" class="anchor">{{ longtailux_link['name'] }}</a></li>
+        {% endfor %}
+        </ul>
+      </div>
+      {% endif %}
+      {% comment %} End: Render Longtail UX links from metafields {% endcomment %}
+      
+      
+      <!-- Begin Bottom -->
+      
+      {% include 'bottom' %}
+      
+              <div id="widget-newsletter-KL" style="background-color:#c3c3c3">
+  <div class="container">
+    <div class="newsletter-container">
+   
+      
+      <div> &nbsp; </div>
+  <div class="klaviyo-form-Y9JaLT"></div> 
+</div> </div> </div>
+      <!-- End Bottom-->
+
+      
+      <!-- Begin Footer -->
+      
+      <footer id="footer-content"{% if settings.footer_placement == 'boxes'%} class="boxes"{% endif %}>
+        {% include 'footer' %}
+         </footer>
+     
+      <!-- End Footer -->
+
+    </div>
+    
+    {% if settings.show_back_to_top %}
+    <div id="scroll-to-top" title="Back To Top">
+      <a href="javascript:;"><i class="fa fa-angle-up"></i></a>
+    </div>
+    {% endif %}
+    
+    
+    <div class="loading" style="display: none;">
+      <div id="circularG">
+        <div id="circularG_1" class="circularG"></div>
+        <div id="circularG_2" class="circularG"></div>
+        <div id="circularG_3" class="circularG"></div>
+        <div id="circularG_4" class="circularG"></div>
+        <div id="circularG_5" class="circularG"></div>
+        <div id="circularG_6" class="circularG"></div>
+        <div id="circularG_7" class="circularG"></div>
+        <div id="circularG_8" class="circularG"></div>
+      </div>
+    </div>
+    
+    {{ "api.jquery.js" | shopify_asset_url | script_tag }}
+    
+    {% include 'cart-dd-custom' %}
+    
+    {% include 'quick-shop' %}
+    {% include 'layout-compare' %}
+    {% include 'layer-cart-modal' %}
+    {% include 'currencies' %}
+    {% include 'mailchimp-popup' %}
+    
+    {% comment %} Linked Product Options {% endcomment %}
+    {% include 'linked-options' %}
+    
+    {% include 'bc-config-js' %}
+    
+    <script type="text/javascript">
+      jQuery(function() {
+        CartJS.init({{ cart | json }}, {
+            dataAPI: true,
+          	moneyFormat: "{{ shop.money_format }}",
+            moneyWithCurrencyFormat: "{{ shop.money_with_currency_format }}",
+            requestBodyClass: "cart-loading"
+        });
+        
+      });
+    </script>
+
+    {% if settings.show_cookie_policy %}
+    <script type="text/javascript" src="{{ 'eu-cookie-support-opt-in.js' | asset_url  }}"></script>
+    <script type="text/javascript" src="{{ 'eu-require-opt-in.js' | asset_url  }}"></script>
+    {% endif %}
+    
+  </div>
+
+  {% comment %}<script src="//www.codeblackbelt.com/js/modules/shipping-rates-calculator-plus/main.min.js?shop=modern-furniture-group.myshopify.com"></script>{% endcomment %}
+  
+  {% comment %}{% endcomment %}
+  
+  
+<!-- BEEKETINGSCRIPT CODE START -->{% include 'bk-tracking' %}<!-- BEEKETINGSCRIPT CODE END -->{% if product %}
+<script>
+  var boosterParams = boosterParams || {};
+  boosterParams.customer = {};
+  boosterParams.product = {{ product | json }};
+  {% if  customer %}
+    boosterParams.customer.email = "{{ customer.email }}";
+  {% endif %}
+</script>
+{% endif %}
+
+<input type="hidden" id="656565115116111114101" data-customer-id="{{ customer.id }}" data-customer-email="{{ customer.email }}" data-customer-name="{{ customer.first_name }} {{ customer.last_name }}"/>
+
+
+ <script async type="text/javascript" data-src="//static.klaviyo.com/onsite/js/klaviyo.js?company_id=WCQsPC"></script>
+<script>
+  function load_learnq()
+  {
+ var _learnq = _learnq || [];
+ if ('{{ customer.email }}') {
+   _learnq.push(['identify', {
+       '$email' : '{{ customer.email }}'
+     }]);
+  }
+  }
+</script> 
+  
+    <script>
+      window.lazySizesConfig = window.lazySizesConfig || {};
+      window.lazySizesConfig.loadMode = 1;
+      window.lazySizesConfig.expand = 10;
+      window.lazySizesConfig.loadHidden = false;
+  </script>
+
+  <script defer src="{{ 'lazysizes.min.js' | asset_url }}" ></script>
+  
+  <script defer src="{{ 'custom.min.js' | asset_url }}" ></script>
+  
+ <!-- <script defer src="https://connect.podium.com/widget.js#API_TOKEN=8b0927ff-ae4e-438d-b6c3-21b44db579f1" id="podium-widget" data-api-token="8b0927ff-ae4e-438d-b6c3-21b44db579f1"></script>
+ -->
+  
+  
+  {% if settings.shipping_calculator_single == 'Enabled' or settings.shipping_calculator == "Enabled" %}
+  <script>
+    
+    $('#zipCode').keyup(delay(function (e) {
+//       var inputLength = this.value.length + 1;
+//       var zip = this.value;
+//       var volume = $(this).attr('data-volume');
+//       $('.input-field').addClass('loading-gif');
+//       if(inputLength > 2) {
+
+//         $.get( "https://www.mydeal.com.au/home/getpostalsuburb?postcodeorsuburb="+zip, function( data ) {
+//           var popupData = '';
+//           $.each(data, function(i, item) {
+//             popupData += '<div class="zip-item" data-volume="'+volume+'" data-post="'+item.postcode+'" data-suburb="'+item.suburb+'">'+item.label+'</div>';
+//           });
+//           $('.input-field').removeClass('loading-gif');
+
+//           $('.suggest-zio').html(popupData).show();
+//         });
+
+//       }else{
+//         $('.input-field').removeClass('loading-gif');
+//       }
+    }, 100));
+    
+    
+    function getSubburbs() {
+      var $this = $('#zipCode');
+      var inputLength = $this.val().length + 1;
+      var zip = $this.val();
+      var volume = $($this).attr('data-volume');
+      $('.input-field').addClass('loading-gif');
+      if(inputLength > 2) {
+
+        $.get( "https://www.mydeal.com.au/home/getpostalsuburb?postcodeorsuburb="+zip, function( data ) {
+          var popupData = '';
+          $.each(data, function(i, item) {
+            popupData += '<div class="zip-item" data-volume="'+volume+'" data-post="'+item.postcode+'" data-suburb="'+item.suburb+'">'+item.label+'</div>';
+          });
+          $('.input-field').removeClass('loading-gif');
+
+          $('.suggest-zio').html(popupData).show();
+        });
+
+      }else{
+        $('.input-field').removeClass('loading-gif');
+      }
+    }
+    
+    function delay(callback, ms) {
+      var timer = 0;
+      return function() {
+        var context = this, args = arguments;
+        clearTimeout(timer);
+        timer = setTimeout(function () {
+          callback.apply(context, args);
+        }, ms || 0);
+      };
+    }
+    $(document).on('click', function(e) {
+      var container = $(".suggest-zio");
+      if (!$(e.target).closest(container).length) {
+        container.hide();
+      }
+    });
+    $(document).on('click', '.zip-item', function(){
+      $('.input-field').addClass('loading-gif');
+    	var postal = $(this).attr('data-post');
+      	var suburb = $(this).attr('data-suburb');
+      	var volume = $(this).attr('volume');
+      
+      
+      var quantity = jQuery('[name="quantity"]').val();
+      {% if template contains 'product' %}
+      var data = {
+      	'postal_code': postal,
+        'city': suburb,
+        'name': '{{ product.title }}',
+        'volume': '{{ product.selected_or_first_available_variant.metafields["modern"]["Volume-Weight"] }}',
+        'quantity': quantity,
+        'grams': '{{ product.selected_or_first_available_variant.weight | weight_with_unit | replace: ' kg', '' }}',
+        'sku': '{{ product.selected_or_first_available_variant.sku }}'
+      }
+      var url = 'https://hairluxe.com.au/modernfurniture/get_service_data_by_product.php';
+      {% elsif template contains 'cart' %}
+      	var cart_items = [];
+      
+      $('[item-cart-items]').each(function(){
+        var item_quantity = $(this).attr('data-quantity');
+        var sku = $(this).attr('data-sku');
+        var name= $(this).attr('data-title');
+        var grams = $(this).attr('data-weight');
+
+        var singleItem = {
+          'name': name,
+          'sku': sku,
+          'quantity': item_quantity,
+          'weight': grams
+        }
+        cart_items.push(singleItem);
+      })
+
+      //       	var data = {
+      //           'postal_code': postal,
+      //           'city': suburb,
+      //           'products': [
+      //               {% for item in cart.items %}
+      //             	{
+      //                   'name': '{{ item.product.title }}',
+      //                   'quantity': {{ item.quantity }},
+        //                   'grams': '{{ item.variant.weight | weight_with_unit | replace: ' kg', '' }}',
+      //                   'sku': '{{ item.variant.sku }}'
+      //               	},
+      //               {% endfor %}
+      //           ]
+      //         }
+
+      var data = {
+        'postal_code': postal,
+        'city': suburb,
+        'products': cart_items
+      }
+
+      var url = 'https://hairluxe.com.au/modernfurniture/cart_page_shipping.php';
+      {% endif %}
+      $('.suggest-zio').hide();
+      
+      $('.shipping_table').remove();
+      
+      $.ajax({
+        type: "POST",
+        url: url,
+        data: data,
+        dataType:"json",
+        success: function(response){
+          console.log(response);
+          var rateRow = '';
+          var rateArray = response.rates;
+          if(response != '') {
+            $.each(rateArray, function(i, item) {
+              if(item.total_price == 0) {
+                var shipPrice = "FREE";
+              }else{
+                var shipPrice = Shopify.formatMoney(item.total_price, Shopify.money_format)
+              }
+              rateRow += '<tr><td style="text-align: left;">'+item.service_name+'</td><td>'+shipPrice+'</td></tr>';
+            });
+            
+            $('.input-field').removeClass('loading-gif');
+            var tableVat = '<table class="shipping_table"><tr><th style="text-align: left;">Shipping Method</th><th>Rate</th></tr>'+rateRow+'</table>';
+            $('.calculate-siping').after(tableVat);
+            
+          }
+        }
+     });
+      
+    })
+  </script>
+  {% endif %}
+  
+
+<!-- spurit_isr-added -->
+{% if template == 'product' %}
+  {% render 'spurit_isr-product-snippet' %}
+{% endif %}
+<!-- /spurit_isr-added -->
+{% render 'collection-filter-v2' %}
+
+</body>
+</html>
+
+<!-- Begin Shopify-Afterpay JavaScript Snippet (v1.0.10) -->
+<script type="text/javascript">
+// Overrides:
+// var afterpay_min = 0.04;            // As per your Afterpay contract.
+// var afterpay_max = 2000.00;         // As per your Afterpay contract.
+// var afterpay_cbt_enabled = false;   // As per your Afterpay contract; change to true to display Cross-Border Trade artwork (for AU/NZ).
+// var afterpay_logo_theme = 'colour'; // Can be 'colour', 'black' or 'white'.
+// var afterpay_product_selector = '#product-price-selector';
+// var afterpay_cart_integration_enabled = true;
+// var afterpay_cart_static_selector = '#cart-subtotal-selector';
+
+// Non-editable fields:
+var afterpay_shop_currency = {{ shop.currency | json }};
+var afterpay_cart_currency = {{ cart.currency.iso_code | json }};
+var afterpay_shop_money_format = {{ shop.money_format | json }};
+var afterpay_shop_permanent_domain = {{ shop.permanent_domain | json }};
+var afterpay_theme_name = {{ theme.name | json }};
+var afterpay_logo_theme = 'colour'; // Can be 'colour', 'black' or 'white'.
+var afterpay_product = {{ product | json }};
+var afterpay_product_selector = ".after-pay-messaging";
+var afterpay_cart_integration_enabled = true;
+var afterpay_current_variant = {{ product.selected_or_first_available_variant | json }};
+var afterpay_cart_total_price = {{ cart.total_price | json }};
+var afterpay_js_snippet_version = '1.0.10';
+</script>
+<script type="text/javascript" src="https://static.afterpay.com/shopify-afterpay-javascript.js"></script>
+<!-- End Shopify-Afterpay JavaScript Snippet (v1.0.10) -->{% if template == 'cart' %}{% include 'hidepaypal' %}{% endif %}
