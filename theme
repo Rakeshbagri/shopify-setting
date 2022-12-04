@@ -19,11 +19,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
  
 <meta name="p:domain_verify" content="f58913a0b40c0b6ed95870043eebda12"/> 
   
-
-   		{% include 'booster-seo' %}
+<meta name="google-site-verification" content="BpzcgoaErEX0UoZsdnJx04tKcTL6ZRQMh9so0nQ9hlk" />
+  	{% include 'booster-seo' %} 
    
    {% comment %}{% include 'limespot' %}{% endcomment %}
- 
+ <meta name="google-site-verification" content="olnfneQ6aZZKjSjly1QG2vRyB0DA8efYJqrU9q-43ho" />
   <meta name="google-site-verification" content="googleeba4c639ad7a7a92.html"/>
   <meta name="google-site-verification" content="_NIoFqg9sWiMNe3cGVqjEVdqqkP3ewCQOUP-YpwrvnM" />
   <meta name="google-site-verification" content="bxUCWnLeu9QWwzULpStcO9yGE6np0Frm_PsN2sRmwrw" />
@@ -114,8 +114,8 @@ pintrk('page');
 </noscript>
 <!-- end Pinterest Tag -->
 
+<meta name="google-site-verification" content="sGg1XQ80pk5UmcgKc1LTK7ZRrjGoK3nZKs55Xwu_dTM" /> 
 
-<meta name="google-site-verification" content="sGg1XQ80pk5UmcgKc1LTK7ZRrjGoK3nZKs55Xwu_dTM" />
 {% render 'aaa-announcementbar-configuration' %} 
   <!-- MAILCHIMP INTEGRATION SCRIPTS -->
    <script id="mcjs">!function(c,h,i,m,p){m=c.createElement(h),p=c.getElementsByTagName(h)[0],m.async=1,m.src=i,p.parentNode.insertBefore(m,p)}(document,"script","https://chimpstatic.com/mcjs-connected/js/users/2035e5e55b1bf0b15380a22ad/ed82af8d53d539e3fb2bd82f3.js");</script>
@@ -210,7 +210,14 @@ var productImagesGSUrls = [];
 
 </script>
 
-{% endif %}<!-- Slider code end. Do not change GSEND --></head>
+{% endif %}<!-- Slider code end. Do not change GSEND -->
+
+{% if template.name == 'product' %}
+	{{ 'okendo-star-rating-click.js' | asset_url | script_tag }}
+{% endif %}
+
+{% include 'scapp-customerinfo' %} 
+</head>
 <body class="{% if customer %}customer-logged-in {% endif %}template{{ template | split: '.' | first | camelize }}">
   
   <!-- Google Tag Manager (noscript) -->
@@ -320,7 +327,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <h4>Popular Searches</h4>
         <ul>
         {% for longtailux_link in longtailux_links %}
+         {% comment %} 
+          longtailux_link['url']  generate links such as https://www.modernfurniture.com.au/a/buy/office-desk-furniture-online, which doesn't work with shopify, change to search links
           <li><a href="{{ longtailux_link['url'] }}" class="anchor">{{ longtailux_link['name'] }}</a></li>
+          {% endcomment %}
+
+          <li><a href="/search?type=product&q={{ longtailux_link['name'] | replace: " ", "+" }}" class="anchor">{{ longtailux_link['name'] }}</a></li>
+
         {% endfor %}
         </ul>
       </div>
@@ -621,7 +634,43 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 {% endif %}
 <!-- /spurit_isr-added -->
 {% render 'collection-filter-v2' %}
+<script>
+    function addToCartMobileClick() {
 
+if (!/product/.test(window.location.href)){
+return;
+}
+
+        var btn = document.querySelector(`#mst-stiky-box button`);
+
+btn.addEventListener('click', function(){
+var atc = document.querySelector(`.grid__item.row_grid_qnt button`);
+
+atc.click();
+});
+    }
+
+addToCartMobileClick()
+</script>
+
+  <script>
+    function addToCartMobileClick() {
+
+if (!/product/.test(window.location.href)){
+return;
+}
+
+        var btn = document.querySelector(`#mst-stiky-box button`);
+
+btn.addEventListener('click', function(){
+var atc = document.querySelector(`.grid__item.row_grid_qnt button`);
+
+atc.click();
+});
+    }
+
+addToCartMobileClick()
+</script>
 </body>
 </html>
 
